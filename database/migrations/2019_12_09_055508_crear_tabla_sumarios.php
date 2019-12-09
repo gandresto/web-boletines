@@ -16,7 +16,7 @@ class CrearTablaSumarios extends Migration
         Schema::create('sumarios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('texto');
-            $table->timestamps();
+            // $table->timestamps();
             $table->unsignedBigInteger('boletin_id');
 
             $table->index('boletin_id');

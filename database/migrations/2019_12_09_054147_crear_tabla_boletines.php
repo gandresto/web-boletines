@@ -15,14 +15,17 @@ class CrearTablaBoletines extends Migration
     {
         Schema::create('boletines', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('candidato', 6);
             $table->unsignedInteger('num_boletin')->nullable();
             $table->date('fecha');
-            $table->string('localidad')->nullable();
-            $table->string('estado');
+            $table->string('localidad', 35)->nullable();
+            $table->string('estado', 25);
             $table->string('encabezado');
             $table->text('primer_parrafo');
-            $table->text('url')->nullable();
-            $table->timestamps();
+            $table->string('url')->nullable();
+            // $table->timestamps();
+
+            $table->index('candidato');
         });
     }
 
