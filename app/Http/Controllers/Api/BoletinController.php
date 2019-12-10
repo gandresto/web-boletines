@@ -16,7 +16,7 @@ class BoletinController extends Controller
      */
     public function index()
     {
-        return response(Boletin::all()->jsonSerialize(), Response::HTTP_OK);
+        return response(Boletin::paginate(15)->jsonSerialize(), Response::HTTP_OK);
     }
 
     /**
@@ -27,9 +27,9 @@ class BoletinController extends Controller
      */
     public function store(Request $request)
     {
-        $crud = new Boletin();
+        $boletin = new Boletin();
 
-        return response($crud->jsonSerialize(), Response::HTTP_CREATED);
+        return response($boletin->jsonSerialize(), Response::HTTP_CREATED);
     }
 
     /**
