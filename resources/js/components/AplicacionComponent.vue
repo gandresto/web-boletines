@@ -1,6 +1,6 @@
 <template>
 <div class="row justify-content-start pt-md-4">
-    <div class="col-md-3 col-lg-4">
+    <div class="col-sm-12 col-md-3">
         <div class="container">
             <div class="card-header">
                 Filtros
@@ -9,7 +9,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9 col-lg-8">
+    <div class="col-sm-12 col-md-9">
         <div class="container">
             <table class="table table-striped table-responsive">
                 <thead class="thead-inverse">
@@ -21,6 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                <!-- Mandamos boletin como prop por cada elemento en boletines -->
                     <boletin-component
                         v-for="boletin in boletines"
                         v-bind:boletin="boletin"

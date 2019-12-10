@@ -1873,6 +1873,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.'); // this.read()
@@ -37332,7 +37333,7 @@ var render = function() {
   return _c("div", { staticClass: "row justify-content-start pt-md-4" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "col-md-9 col-lg-8" }, [
+    _c("div", { staticClass: "col-sm-12 col-md-9" }, [
       _c("div", { staticClass: "container" }, [
         _c("table", { staticClass: "table table-striped table-responsive" }, [
           _vm._m(1),
@@ -37357,7 +37358,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 col-lg-4" }, [
+    return _c("div", { staticClass: "col-sm-12 col-md-3" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "card-header" }, [
           _vm._v("\n                Filtros\n            ")
