@@ -14,7 +14,9 @@ class BoletinController extends Controller
      */
     public function index()
     {
-        //
+        $boletines = Boletin::paginate(20);
+        return view('boletines.index', compact('boletines'));
+
     }
 
     /**
