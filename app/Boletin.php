@@ -13,4 +13,11 @@ class Boletin extends Model
     {
         return $this->hasMany('App\Sumario');
     }
+
+    public function categorias()
+    {
+        return $this->belongsToMany('App\Categoria')
+                    ->withPivot('descripcion');;
+    }
+
 }
