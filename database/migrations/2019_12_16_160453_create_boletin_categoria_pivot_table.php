@@ -15,15 +15,15 @@ class CreateBoletinCategoriaPivotTable extends Migration
     {
         Schema::create('boletin_categoria', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigIncrements('boletin_id');
-            $table->bigIncrements('categoria_id');
+            $table->unsignedBigInteger('boletin_id');
+            $table->unsignedBigInteger('categoria_id');
             $table->string('descripcion');
             // $table->timestamps();
             $table->index('boletin_id');
             $table->index('categoria_id');
 
-            $table->foreign('boletin_id')->references('id')->on('boletin');
-            $table->foreign('categoria_id')->references('id')->on('categoria');
+            $table->foreign('boletin_id')->references('id')->on('boletines');
+            $table->foreign('categoria_id')->references('id')->on('categorias');
         });
     }
 
