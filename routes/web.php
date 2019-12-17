@@ -14,7 +14,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect('/boletines');
+    return view('index');
 });
 
-Route::resource('boletines', 'BoletinController');
+// Route::resource('boletines', 'BoletinController');
