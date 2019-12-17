@@ -1,15 +1,16 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Boletines</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
+    <div class="row justify-content-start pt-md-4">
+        <div class="col-sm-12 col-md-3">
+            <div class="container">
+                <div class="card-header">
+                    Filtros
+                </div>
+                <div class="card-body">
                 </div>
             </div>
+        </div>
+        <div class="col-sm-12 col-md-9">
+            <b-table></b-table>
         </div>
     </div>
 </template>

@@ -10,11 +10,8 @@
             </b-navbar-nav>
         </b-collapse>
     </b-navbar>
-
     <!-- Contenido -->
-    <div class="row justify-content-start pt-md-4">
-        <router-view></router-view>
-    </div>
+    <router-view></router-view>
 
 </div>
 </template>
@@ -23,7 +20,6 @@
     export default {
         mounted() {
             console.log('Componente principal montado.')
-            // this.read()
         }
     }
 </script>
