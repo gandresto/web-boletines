@@ -21,3 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/boletines', 'Api\BoletinController', [
     'except' => ['edit', 'show', 'store']
   ]);
+
+Route::resource('/categoria', 'Api\CategoriaController', [
+    'except' => ['edit', 'show', 'store']
+  ]);
