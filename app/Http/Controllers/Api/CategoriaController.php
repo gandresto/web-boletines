@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Categoria;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoriasCollection;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -15,7 +16,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        return new CategoriasCollection(Categoria::all());
     }
 
     /**
@@ -35,7 +36,7 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function show(int $categoria)
     {
         //
     }
@@ -47,7 +48,7 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, int $categoria)
     {
         //
     }
@@ -58,7 +59,7 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(int $categoria)
     {
         //
     }

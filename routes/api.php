@@ -18,10 +18,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::resource('/boletines', 'Api\BoletinController', [
-    'except' => ['edit', 'show', 'store']
-  ]);
+Route::apiResource('/boletines', 'Api\BoletinController');
 
-Route::resource('/categoria', 'Api\CategoriaController', [
-    'except' => ['edit', 'show', 'store']
-  ]);
+Route::apiResource('/categorias', 'Api\CategoriaController');

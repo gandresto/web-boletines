@@ -40,10 +40,9 @@ class BoletinController extends Controller
      * @param  \App\Boletin  $boletin
      * @return \Illuminate\Http\Response
      */
-    public function show(Boletin $boletin)
+    public function show(int $boletin)
     {
-        $boletin = Boletin::find($boletin);
-        return new BoletinResource($boletin);
+        return new BoletinResource(Boletin::find($boletin));
     }
 
     /**
@@ -53,7 +52,7 @@ class BoletinController extends Controller
      * @param  \App\Boletin  $boletin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Boletin $boletin)
+    public function update(Request $request, int $boletin)
     {
         $boletin = Boletin::findOrFail($boletin);
 
@@ -66,7 +65,7 @@ class BoletinController extends Controller
      * @param  \App\Boletin  $boletin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Boletin $boletin)
+    public function destroy(int $boletin)
     {
         Boletin::destroy($boletin);
 
