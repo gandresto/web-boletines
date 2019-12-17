@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Boletin;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BoletinesCollection;
+use App\Http\Resources\BoletinResource;
+use Illuminate\Cache\RetrievesMultipleKeys;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -16,7 +19,7 @@ class BoletinController extends Controller
      */
     public function index()
     {
-        return response(Boletin::paginate(15)->jsonSerialize(), Response::HTTP_OK);
+        return new BoletinesCollection(Boletin::paginate(15));
     }
 
     /**
@@ -28,7 +31,6 @@ class BoletinController extends Controller
     public function store(Request $request)
     {
         $boletin = new Boletin();
-
         return response($boletin->jsonSerialize(), Response::HTTP_CREATED);
     }
 
@@ -40,7 +42,8 @@ class BoletinController extends Controller
      */
     public function show(Boletin $boletin)
     {
-        //
+        $boletin = Boletin::find($boletin);
+        return new BoletinResource($boletin);
     }
 
     /**
