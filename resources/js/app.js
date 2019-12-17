@@ -7,10 +7,12 @@
 require('./bootstrap');
 import Vue from 'vue';
 import Aplicacion from './Aplicacion.vue';
+import BootstrapVue from 'bootstrap-vue'
 import router from './router';
 import store from './store';
 
-window.Vue = require('vue');
+// window.Vue = require('vue');
+Vue.use(BootstrapVue)
 
 /**
  * The following block of code may be used to automatically register your

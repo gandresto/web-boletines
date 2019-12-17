@@ -1,7 +1,8 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import VueRouter from 'vue-router';
 import Boletines from './views/Boletines.vue'
 import Home from './views/Home.vue'
+
 Vue.use(VueRouter);
 
 export default new VueRouter({
@@ -11,12 +12,12 @@ export default new VueRouter({
         {
             path : '/',
             name : 'home',
-            component : 'Home'
+            component : Home
         },
         {
             path : '/boletines',
             name : 'boletines',
-            component : 'Boletines'
+            component : Boletines
         },
     ],
 });
