@@ -9,7 +9,7 @@ import Vue from 'vue';
 import Aplicacion from './Aplicacion.vue';
 import BootstrapVue from 'bootstrap-vue'
 import router from './router';
-import store from './store';
+import store from './store/';
 
 // window.Vue = require('vue');
 Vue.use(BootstrapVue)
