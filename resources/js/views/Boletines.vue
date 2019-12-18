@@ -11,20 +11,15 @@
         </div>
         <div class="col-sm-12 col-md-9">
             <div :v-if="estadoApi == ESTADO_API.LISTO">
-                <b-pagination
-                    :v-model="meta.current_page"
-                    :total-rows="rows"
-                    :per-page="meta.per_page"
-                    aria-controls="tabla-boletines"
-                ></b-pagination>
+                <paginador-component></paginador-component>
                 <b-table
                     id="tabla-boletines"
                     :items="boletines"
-                    :per_page="meta.per_page"
-                    :current-page="meta.current_page"
                     :fields="['candidato', 'fecha', 'estado', 'encabezado']">
                 </b-table>
             </div>
+            <div :v-if="estadoApi== ESTADO_API.ERROR">ERROR</div>
+            <div :v-if="estadoApi== ESTADO_API.CARGANDO">CARGANDO</div>
             <!-- <b-pagination-nav :link-gen="linkGen" :number-of-pages="meta.last_page"></b-pagination-nav> -->
         </div>
     </div>
@@ -42,13 +37,13 @@
         },
         data() {
             return {
-                ESTADO_API
+                ESTADO_API,
             }
         },
         methods: {
-            linkGen(pageNum) {
-                return pageNum === 1 ? '?' : `?page=${pageNum}`
-            },
+            // linkGen(pageNum) {
+            //     return pageNum === 1 ? '?' : `?page=${pageNum}`
+            // },
             ...mapActions([
                 'leerBoletines',
             ])
@@ -56,16 +51,11 @@
         computed: {
             ...mapState({
                 boletines: state => state.boletines.data,
-                links: state => state.boletines.links,
-                meta: state => state.boletines.meta,
                 estadoApi: state => state.estadoApi,
             }),
-            rows(){
-                return this.boletines.length
+            created() {
+                this.leerBoletines();
             },
-        },
-        created() {
-            this.leerBoletines();
-        },
+        }
     }
 </script>

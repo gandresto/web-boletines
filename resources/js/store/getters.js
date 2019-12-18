@@ -1,0 +1,6 @@
+export default {
+    boletines: state => state.boletines.data,
+    links: state => state.boletines.links,
+    meta: state => state.boletines.meta,
+    estadoApi: state => state.estadoApi,
+}
