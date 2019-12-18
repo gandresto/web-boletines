@@ -9,8 +9,8 @@
         </li>
         <li :class="links.prev ? 'page-item': 'page-item disabled'">
             <a class="page-link"
-                @click.prevent="leerBoletinesDeURI(links.prev)"
-                :tabindex="hayAnterior ? '-1': ''"
+                @click.prevent="leerAnterior()"
+                :tabindex="links.prev ? '-1': ''"
                 href="#">
                 Anterior
             </a>
@@ -25,8 +25,8 @@
         </template>
         <li :class="links.next ? 'page-item': 'page-item disabled'">
             <a class="page-link"
-                @click.prevent="leerBoletinesDeURI(links.next)"
-                :tabindex="haySiguiente  ? '-1': ''"
+                @click.prevent="leerSiguiente()"
+                :tabindex="links.next  ? '-1': ''"
                 href="#">
                 Siguiente
             </a>
@@ -52,9 +52,15 @@
             }
         },
         mounted() {
-            console.log('Paginador montado.')
+            console.log('Paginador montado.');
         },
         methods: {
+            leerSiguiente(){
+                this.leerBoletinesDeURI(this.links.next);
+            },
+            leerAnterior(){
+                this.leerBoletinesDeURI(this.links.prev);
+            },
             ...mapActions([
                 'leerBoletinesDeURI'
             ]),
@@ -64,18 +70,22 @@
                 links: state => state.boletines.links,
                 meta: state => state.boletines.meta,
             }),
-            siguiente(){
-                return this.meta.current_page + 1;
-            },
-            anterior(){
-                return this.meta.current_page - 1;
-            },
-            haySiguiente(){
-                return this.meta.current_page < this.meta.last_page;
-            },
-            hayAnterior(){
-                return this.meta.current_page > 1;
-            },
+            // siguiente(){
+            //     return this.meta.current_page + 1;
+            // },
+            // anterior(){
+            //     return this.meta.current_page - 1;
+            // },
+            // haySiguiente(){
+            //     return this.meta.current_page < this.meta.last_page;
+            // },
+            // hayAnterior(){
+            //     return this.meta.current_page > 1;
+            // },
+        },
+        created() {
+            console.log(this.links);
+            console.log(this.meta);
         },
     }
 </script>

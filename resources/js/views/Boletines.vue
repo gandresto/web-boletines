@@ -26,8 +26,7 @@
 </template>
 
 <script>
-    import { mapActions } from 'vuex'
-    import { mapState } from 'vuex'
+    import { mapActions, mapState } from 'vuex'
     import ESTADO_API from '../enum-estado-api'
 
     export default {
@@ -53,9 +52,9 @@
                 boletines: state => state.boletines.data,
                 estadoApi: state => state.estadoApi,
             }),
-            created() {
-                this.leerBoletines();
-            },
-        }
+        },
+        created() {
+            this.leerBoletines();
+        },
     }
 </script>

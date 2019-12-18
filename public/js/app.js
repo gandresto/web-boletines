@@ -1932,7 +1932,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     console.log('Paginador montado.');
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletinesDeURI'])),
+  methods: _objectSpread({
+    leerSiguiente: function leerSiguiente() {
+      this.leerBoletinesDeURI(this.links.next);
+    },
+    leerAnterior: function leerAnterior() {
+      this.leerBoletinesDeURI(this.links.prev);
+    }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletinesDeURI'])),
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     links: function links(state) {
       return state.boletines.links;
@@ -1940,20 +1947,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     meta: function meta(state) {
       return state.boletines.meta;
     }
-  }), {
-    siguiente: function siguiente() {
-      return this.meta.current_page + 1;
-    },
-    anterior: function anterior() {
-      return this.meta.current_page - 1;
-    },
-    haySiguiente: function haySiguiente() {
-      return this.meta.current_page < this.meta.last_page;
-    },
-    hayAnterior: function hayAnterior() {
-      return this.meta.current_page > 1;
-    }
-  })
+  })),
+  created: function created() {
+    console.log(this.links);
+    console.log(this.meta);
+  }
 });
 
 /***/ }),
@@ -2004,7 +2002,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component Boletines Montado.'); // this.leerBoletines();
@@ -2022,11 +2019,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     estadoApi: function estadoApi(state) {
       return state.estadoApi;
     }
-  }), {
-    created: function created() {
-      this.leerBoletines();
-    }
-  })
+  })),
+  created: function created() {
+    this.leerBoletines();
+  }
 });
 
 /***/ }),
@@ -66844,11 +66840,11 @@ var render = function() {
               "a",
               {
                 staticClass: "page-link",
-                attrs: { tabindex: _vm.hayAnterior ? "-1" : "", href: "#" },
+                attrs: { tabindex: _vm.links.prev ? "-1" : "", href: "#" },
                 on: {
                   click: function($event) {
                     $event.preventDefault()
-                    return _vm.leerBoletinesDeURI(_vm.links.prev)
+                    return _vm.leerAnterior()
                   }
                 }
               },
@@ -66885,11 +66881,11 @@ var render = function() {
               "a",
               {
                 staticClass: "page-link",
-                attrs: { tabindex: _vm.haySiguiente ? "-1" : "", href: "#" },
+                attrs: { tabindex: _vm.links.next ? "-1" : "", href: "#" },
                 on: {
                   click: function($event) {
                     $event.preventDefault()
-                    return _vm.leerBoletinesDeURI(_vm.links.next)
+                    return _vm.leerSiguiente()
                   }
                 }
               },
