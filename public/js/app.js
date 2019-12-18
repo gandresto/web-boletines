@@ -1873,6 +1873,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../enum-estado-api */ "./resources/js/enum-estado-api.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1890,9 +1898,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component Boletines Montado.');
+    console.log('Component Boletines Montado.'); // this.leerBoletines();
+  },
+  data: function data() {
+    return {
+      ESTADO_API: _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__["default"]
+    };
+  },
+  methods: _objectSpread({
+    linkGen: function linkGen(pageNum) {
+      return pageNum === 1 ? '?' : "?page=".concat(pageNum);
+    }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletines'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+    boletines: function boletines(state) {
+      return state.boletines.data;
+    },
+    links: function links(state) {
+      return state.boletines.links;
+    },
+    meta: function meta(state) {
+      return state.boletines.meta;
+    },
+    estadoApi: function estadoApi(state) {
+      return state.estadoApi;
+    }
+  }), {
+    rows: function rows() {
+      return this.boletines.length;
+    }
+  }),
+  created: function created() {
+    this.leerBoletines();
   }
 });
 
@@ -66592,6 +66649,19 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-axios/dist/vue-axios.min.js":
+/*!******************************************************!*\
+  !*** ./node_modules/vue-axios/dist/vue-axios.min.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(o){return typeof o}:function(o){return o&&"function"==typeof Symbol&&o.constructor===Symbol&&o!==Symbol.prototype?"symbol":typeof o};!function(){function o(e,t){if(!o.installed){if(o.installed=!0,!t)return void console.error("You have to install axios");e.axios=t,Object.defineProperties(e.prototype,{axios:{get:function(){return t}},$http:{get:function(){return t}}})}}"object"==( false?undefined:_typeof(exports))?module.exports=o: true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function(){return o}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined}();
+
+/***/ }),
+
 /***/ "./node_modules/vue-functional-data-merge/dist/lib.esm.js":
 /*!****************************************************************!*\
   !*** ./node_modules/vue-functional-data-merge/dist/lib.esm.js ***!
@@ -66686,7 +66756,33 @@ var render = function() {
   return _c("div", { staticClass: "row justify-content-start pt-md-4" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "col-sm-12 col-md-9" }, [_c("b-table")], 1)
+    _c("div", { staticClass: "col-sm-12 col-md-9" }, [
+      _c(
+        "div",
+        { attrs: { "v-if": _vm.estadoApi == _vm.ESTADO_API.LISTO } },
+        [
+          _c("b-pagination", {
+            attrs: {
+              "v-model": _vm.meta.current_page,
+              "total-rows": _vm.rows,
+              "per-page": _vm.meta.per_page,
+              "aria-controls": "tabla-boletines"
+            }
+          }),
+          _vm._v(" "),
+          _c("b-table", {
+            attrs: {
+              id: "tabla-boletines",
+              items: _vm.boletines,
+              per_page: _vm.meta.per_page,
+              "current-page": _vm.meta.current_page,
+              fields: ["candidato", "fecha", "estado", "encabezado"]
+            }
+          })
+        ],
+        1
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -82941,6 +83037,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap-vue */ "./node_modules/bootstrap-vue/esm/index.js");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
 /* harmony import */ var _store___WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/ */ "./resources/js/store/index.js");
+/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.min.js");
+/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -82952,9 +83052,17 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+
+
  // window.Vue = require('vue');
 
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_5___default.a, axios__WEBPACK_IMPORTED_MODULE_6___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
+axios__WEBPACK_IMPORTED_MODULE_6___default.a.defaults.headers.common = {
+  'X-CSRF-TOKEN': Laravel.csrfToken,
+  'X-Requested-With': 'XMLHttpRequest',
+  'Accept': 'application/json'
+};
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -83027,6 +83135,24 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/enum-estado-api.js":
+/*!*****************************************!*\
+  !*** ./resources/js/enum-estado-api.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  INICIADO: 0,
+  CARGANDO: 1,
+  ERROR: 2,
+  LISTO: 3
+});
+
+/***/ }),
+
 /***/ "./resources/js/router.js":
 /*!********************************!*\
   !*** ./resources/js/router.js ***!
@@ -83057,9 +83183,29 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     path: '/boletines',
     name: 'boletines',
     component: _views_Boletines_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }]
+  } // {
+  //     path : '/boletines/:id',
+  //     name : 'boletines',
+  //     component : Boletines
+  // },
+  ]
 }));
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./resources/js/services/api.js":
+/*!**************************************!*\
+  !*** ./resources/js/services/api.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  baseURL: 'http://localhost:8000/api/'
+});
 
 /***/ }),
 
@@ -83072,7 +83218,30 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _services_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/api */ "./resources/js/services/api.js");
+/* harmony import */ var _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../enum-estado-api */ "./resources/js/enum-estado-api.js");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  leerBoletines: function leerBoletines(_ref) {
+    var commit = _ref.commit,
+        payload = _ref.payload;
+    commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO);
+    var uri = '';
+    if (payload) uri = _services_api__WEBPACK_IMPORTED_MODULE_1__["default"].baseURL + 'boletines?page=' + payload;else uri = _services_api__WEBPACK_IMPORTED_MODULE_1__["default"].baseURL + 'boletines';
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (r) {
+      return r.data;
+    }).then(function (boletines) {
+      commit('colocarBoletines', boletines);
+      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].LISTO);
+    })["catch"](function (err) {
+      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR);
+    });
+  }
+});
 
 /***/ }),
 
@@ -83114,7 +83283,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  colocarBoletines: function colocarBoletines(state, boletines) {
+    state.boletines = boletines;
+  },
+  colocarEstadoApi: function colocarEstadoApi(state, estadoApi) {
+    state.estadoApi = estadoApi;
+  }
+});
 
 /***/ }),
 
@@ -83127,7 +83303,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony import */ var _enum_estado_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../enum-estado-api */ "./resources/js/enum-estado-api.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  estadoApi: _enum_estado_api__WEBPACK_IMPORTED_MODULE_0__["default"].INICIADO,
+  boletines: {
+    data: [],
+    meta: {},
+    links: {}
+  }
+});
 
 /***/ }),
 
