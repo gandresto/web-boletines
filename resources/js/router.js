@@ -19,5 +19,10 @@ export default new VueRouter({
             name : 'boletines',
             component : Boletines
         },
+        // {
+        //     path : '/boletines/:id',
+        //     name : 'boletines',
+        //     component : Boletines
+        // },
     ],
 });
