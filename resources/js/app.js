@@ -10,9 +10,18 @@ import Aplicacion from './Aplicacion.vue';
 import BootstrapVue from 'bootstrap-vue'
 import router from './router';
 import store from './store/';
+import VueAxios from 'vue-axios';
+import axios from 'axios';
 
 // window.Vue = require('vue');
+Vue.use(VueAxios, axios);
 Vue.use(BootstrapVue)
+
+axios.defaults.headers.common = {
+    'X-CSRF-TOKEN': Laravel.csrfToken,
+    'X-Requested-With': 'XMLHttpRequest',
+    'Accept' : 'application/json',
+};
 
 /**
  * The following block of code may be used to automatically register your

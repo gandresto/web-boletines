@@ -23,5 +23,10 @@
     <div id="app">
         <aplicacion></aplicacion>
     </div>
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+     </script>
 </body>
 </html>
