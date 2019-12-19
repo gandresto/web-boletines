@@ -19,6 +19,7 @@
                     :fields="['candidato', 'fecha', 'estado', 'encabezado']"
                     :busy="estaCargando"
                     head-variant="dark"
+                    @row-clicked="verDetallesBoletin"
                 >
                     <template v-slot:table-busy>
                         <div class="text-center text-primary my-2">
@@ -29,8 +30,6 @@
                 </b-table>
                 <paginador-component></paginador-component>
             </template>
-            <!-- <template :v-else-if="estadoApi == ESTADO_API.ERROR">ERROR {{estadoApi}}</template>
-            <template :v-else-if="estadoApi == ESTADO_API.CARGANDO">CARGANDO {{estadoApi}}</template> -->
         </b-col>
     </b-row>
 </b-container>
@@ -51,6 +50,9 @@
             }
         },
         methods: {
+            verDetallesBoletin(item){
+                console.log(item);
+            },
             ...mapActions([
                 'leerBoletines',
             ])
@@ -69,3 +71,8 @@
         },
     }
 </script>
+<style>
+    tbody tr {
+        cursor: pointer;
+    }
+</style>
