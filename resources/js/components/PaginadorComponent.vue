@@ -1,8 +1,11 @@
 <template>
 <nav aria-label="Navegación">
     <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
+        <li :class="links.prev ? 'page-item': 'page-item disabled'">
+            <a class="page-link"
+                @click.prevent="leerPrimero()"
+                href="#"
+                aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
                 <span class="sr-only">Primero</span>
             </a>
@@ -15,10 +18,12 @@
                 Anterior
             </a>
         </li>
-        <template v-for="n in meta.last_page">
+        <template v-for="n in listaPaginas">
             <li :class="n == meta.current_page ? 'page-item active' : 'page-item'"
                 :key="n">
-                <a class="page-link" href="#">
+                <a class="page-link"
+                    href="#"
+                    @click.prevent="leerPagina(n)">
                     {{n}}
                 </a>
             </li>
@@ -31,8 +36,11 @@
                 Siguiente
             </a>
         </li>
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Último">
+        <li :class="links.next ? 'page-item': 'page-item disabled'">
+            <a class="page-link"
+                href="#"
+                @click.prevent="leerUltimo()"
+                aria-label="Último">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only">Última</span>
             </a>
@@ -42,15 +50,9 @@
 </template>
 
 <script>
-    import { mapActions } from 'vuex'
-    import { mapState } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
 
     export default {
-        data() {
-            return {
-
-            }
-        },
         mounted() {
             console.log('Paginador montado.');
         },
@@ -61,31 +63,42 @@
             leerAnterior(){
                 this.leerBoletinesDeURI(this.links.prev);
             },
+            leerPrimero(){
+                this.leerBoletinesDeURI(this.links.first);
+            },
+            leerUltimo(){
+                this.leerBoletinesDeURI(this.links.last);
+            },
+            leerPagina(pag){
+                this.leerBoletinesPorPagina(pag);
+            },
             ...mapActions([
-                'leerBoletinesDeURI'
+                'leerBoletinesDeURI',
+                'leerBoletinesPorPagina',
             ]),
         },
         computed: {
-            ...mapState({
-                links: state => state.boletines.links,
-                meta: state => state.boletines.meta,
-            }),
-            // siguiente(){
-            //     return this.meta.current_page + 1;
-            // },
-            // anterior(){
-            //     return this.meta.current_page - 1;
-            // },
-            // haySiguiente(){
-            //     return this.meta.current_page < this.meta.last_page;
-            // },
-            // hayAnterior(){
-            //     return this.meta.current_page > 1;
-            // },
+            listaPaginas(){
+                let centro = this.meta.current_page;
+                let ultima = this.meta.last_page;
+                let lista_paginas = [];
+                let cuenta = 0;
+                for (let i = centro-2; i <= ultima; i++) {
+                    if(i < 1) continue;
+                    lista_paginas.push(i);
+                    cuenta++;
+                    if(cuenta == 5) break;
+                }
+                return lista_paginas;
+            },
+            ...mapGetters([
+                'links',
+                'meta',
+            ]),
         },
         created() {
-            console.log(this.links);
-            console.log(this.meta);
+            // console.log(this.links);
+            // console.log(this.meta);
         },
     }
 </script>

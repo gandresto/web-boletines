@@ -1923,6 +1923,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -1934,9 +1942,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     leerAnterior: function leerAnterior() {
       this.leerBoletinesDeURI(this.links.prev);
+    },
+    leerPrimero: function leerPrimero() {
+      this.leerBoletinesDeURI(this.links.first);
+    },
+    leerUltimo: function leerUltimo() {
+      this.leerBoletinesDeURI(this.links.last);
+    },
+    leerPagina: function leerPagina(pag) {
+      this.leerBoletinesPorPagina(pag);
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletinesDeURI'])),
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['links', 'meta'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletinesDeURI', 'leerBoletinesPorPagina'])),
+  computed: _objectSpread({
+    listaPaginas: function listaPaginas() {
+      var centro = this.meta.current_page;
+      var ultima = this.meta.last_page;
+      var lista_paginas = [];
+      var cuenta = 0;
+
+      for (var i = centro - 2; i <= ultima; i++) {
+        if (i < 1) continue;
+        lista_paginas.push(i);
+        cuenta++;
+        if (cuenta == 5) break;
+      }
+
+      return lista_paginas;
+    }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['links', 'meta'])),
   created: function created() {// console.log(this.links);
     // console.log(this.meta);
   }
@@ -66814,7 +66847,26 @@ var render = function() {
         _c(
           "li",
           { class: _vm.links.prev ? "page-item" : "page-item disabled" },
-          [_vm._m(0)]
+          [
+            _c(
+              "a",
+              {
+                staticClass: "page-link",
+                attrs: { href: "#", "aria-label": "Previous" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.leerPrimero()
+                  }
+                }
+              },
+              [
+                _c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("«")]),
+                _vm._v(" "),
+                _c("span", { staticClass: "sr-only" }, [_vm._v("Primero")])
+              ]
+            )
+          ]
         ),
         _vm._v(" "),
         _c(
@@ -66838,7 +66890,7 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _vm._l(_vm.meta.last_page, function(n) {
+        _vm._l(_vm.listaPaginas, function(n) {
           return [
             _c(
               "li",
@@ -66848,11 +66900,26 @@ var render = function() {
                   n == _vm.meta.current_page ? "page-item active" : "page-item"
               },
               [
-                _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-                  _vm._v(
-                    "\n                    " + _vm._s(n) + "\n                "
-                  )
-                ])
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.leerPagina(n)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(n) +
+                        "\n                "
+                    )
+                  ]
+                )
               ]
             )
           ]
@@ -66882,49 +66949,33 @@ var render = function() {
         _c(
           "li",
           { class: _vm.links.next ? "page-item" : "page-item disabled" },
-          [_vm._m(1)]
+          [
+            _c(
+              "a",
+              {
+                staticClass: "page-link",
+                attrs: { href: "#", "aria-label": "Último" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.leerUltimo()
+                  }
+                }
+              },
+              [
+                _c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("»")]),
+                _vm._v(" "),
+                _c("span", { staticClass: "sr-only" }, [_vm._v("Última")])
+              ]
+            )
+          ]
         )
       ],
       2
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "page-link",
-        attrs: { href: "#", "aria-label": "Previous" }
-      },
-      [
-        _c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("«")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "sr-only" }, [_vm._v("Primero")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "page-link",
-        attrs: { href: "#", "aria-label": "Último" }
-      },
-      [
-        _c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("»")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "sr-only" }, [_vm._v("Última")])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -83498,7 +83549,20 @@ __webpack_require__.r(__webpack_exports__);
   leerBoletinesDeURI: function leerBoletinesDeURI(_ref2, uri) {
     var commit = _ref2.commit;
     commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO);
-    console.log(uri);
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (r) {
+      return r.data;
+    }).then(function (boletines) {
+      commit('colocarBoletines', boletines);
+      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].LISTO);
+    })["catch"](function (err) {
+      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR);
+      console.log(err);
+    });
+  },
+  leerBoletinesPorPagina: function leerBoletinesPorPagina(_ref3, pag) {
+    var commit = _ref3.commit;
+    commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO);
+    var uri = "".concat(_services_api__WEBPACK_IMPORTED_MODULE_1__["default"].baseURL, "boletines?page=").concat(pag);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (r) {
       return r.data;
     }).then(function (boletines) {
