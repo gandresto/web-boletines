@@ -42,7 +42,7 @@ class BoletinController extends Controller
      */
     public function show(int $boletin)
     {
-        return new BoletinResource(Boletin::find($boletin));
+        return new BoletinResource(Boletin::findOrFail($boletin));
     }
 
     /**
@@ -55,7 +55,6 @@ class BoletinController extends Controller
     public function update(Request $request, int $boletin)
     {
         $boletin = Boletin::findOrFail($boletin);
-
         return response(null, Response::HTTP_OK);
     }
 
