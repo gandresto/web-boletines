@@ -2023,6 +2023,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2035,7 +2044,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletines'])),
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['boletines', 'estadoApi'])),
+  computed: _objectSpread({
+    estaCargando: function estaCargando() {
+      return this.estadoApi == _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__["default"].CARGANDO;
+    }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['boletines', 'estadoApi'])),
   created: function created() {
     this.leerBoletines();
   }
@@ -66887,7 +66900,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n                Anterior\n            ")]
+              [_vm._v("\r\n                Anterior\r\n            ")]
             )
           ]
         ),
@@ -66916,9 +66929,9 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                    " +
+                      "\r\n                    " +
                         _vm._s(n) +
-                        "\n                "
+                        "\r\n                "
                     )
                   ]
                 )
@@ -66943,7 +66956,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n                Siguiente\n            ")]
+              [_vm._v("\r\n                Siguiente\r\n            ")]
             )
           ]
         ),
@@ -67031,10 +67044,34 @@ var render = function() {
                 _vm._v(" "),
                 _c("b-table", {
                   attrs: {
+                    striped: "",
+                    hover: "",
                     id: "tabla-boletines",
                     items: _vm.boletines,
-                    fields: ["candidato", "fecha", "estado", "encabezado"]
-                  }
+                    fields: ["candidato", "fecha", "estado", "encabezado"],
+                    busy: _vm.estaCargando,
+                    "head-variant": "dark"
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "table-busy",
+                      fn: function() {
+                        return [
+                          _c(
+                            "div",
+                            { staticClass: "text-center text-primary my-2" },
+                            [
+                              _c("b-spinner", { staticClass: "align-middle" }),
+                              _vm._v(" "),
+                              _c("strong", [_vm._v("Cargando...")])
+                            ],
+                            1
+                          )
+                        ]
+                      },
+                      proxy: true
+                    }
+                  ])
                 }),
                 _vm._v(" "),
                 _c("paginador-component")

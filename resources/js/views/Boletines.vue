@@ -13,10 +13,19 @@
         <b-col sm="12" md="9">
             <template :v-if="estadoApi == ESTADO_API.LISTO">
                 <paginador-component></paginador-component>
-                <b-table
+                <b-table striped hover
                     id="tabla-boletines"
                     :items="boletines"
-                    :fields="['candidato', 'fecha', 'estado', 'encabezado']">
+                    :fields="['candidato', 'fecha', 'estado', 'encabezado']"
+                    :busy="estaCargando"
+                    head-variant="dark"
+                >
+                    <template v-slot:table-busy>
+                        <div class="text-center text-primary my-2">
+                        <b-spinner class="align-middle"></b-spinner>
+                        <strong>Cargando...</strong>
+                        </div>
+                    </template>
                 </b-table>
                 <paginador-component></paginador-component>
             </template>
@@ -42,14 +51,14 @@
             }
         },
         methods: {
-            // linkGen(pageNum) {
-            //     return pageNum === 1 ? '?' : `?page=${pageNum}`
-            // },
             ...mapActions([
                 'leerBoletines',
             ])
         },
         computed: {
+            estaCargando(){
+                return  this.estadoApi == ESTADO_API.CARGANDO;
+            },
             ...mapGetters([
                 'boletines',
                 'estadoApi',
