@@ -1924,11 +1924,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {};
-  },
   mounted: function mounted() {
     console.log('Paginador montado.');
   },
@@ -1940,17 +1936,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.leerBoletinesDeURI(this.links.prev);
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletinesDeURI'])),
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
-    links: function links(state) {
-      return state.boletines.links;
-    },
-    meta: function meta(state) {
-      return state.boletines.meta;
-    }
-  })),
-  created: function created() {
-    console.log(this.links);
-    console.log(this.meta);
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['links', 'meta'])),
+  created: function created() {// console.log(this.links);
+    // console.log(this.meta);
   }
 });
 
@@ -2012,14 +2000,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletines'])),
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
-    boletines: function boletines(state) {
-      return state.boletines.data;
-    },
-    estadoApi: function estadoApi(state) {
-      return state.estadoApi;
-    }
-  })),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['boletines', 'estadoApi'])),
   created: function created() {
     this.leerBoletines();
   }
@@ -66830,7 +66811,11 @@ var render = function() {
       "ul",
       { staticClass: "pagination" },
       [
-        _vm._m(0),
+        _c(
+          "li",
+          { class: _vm.links.prev ? "page-item" : "page-item disabled" },
+          [_vm._m(0)]
+        ),
         _vm._v(" "),
         _c(
           "li",
@@ -66894,7 +66879,11 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _vm._m(1)
+        _c(
+          "li",
+          { class: _vm.links.next ? "page-item" : "page-item disabled" },
+          [_vm._m(1)]
+        )
       ],
       2
     )
@@ -66905,39 +66894,35 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "page-item" }, [
-      _c(
-        "a",
-        {
-          staticClass: "page-link",
-          attrs: { href: "#", "aria-label": "Previous" }
-        },
-        [
-          _c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("«")]),
-          _vm._v(" "),
-          _c("span", { staticClass: "sr-only" }, [_vm._v("Primero")])
-        ]
-      )
-    ])
+    return _c(
+      "a",
+      {
+        staticClass: "page-link",
+        attrs: { href: "#", "aria-label": "Previous" }
+      },
+      [
+        _c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("«")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Primero")])
+      ]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "page-item" }, [
-      _c(
-        "a",
-        {
-          staticClass: "page-link",
-          attrs: { href: "#", "aria-label": "Último" }
-        },
-        [
-          _c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("»")]),
-          _vm._v(" "),
-          _c("span", { staticClass: "sr-only" }, [_vm._v("Última")])
-        ]
-      )
-    ])
+    return _c(
+      "a",
+      {
+        staticClass: "page-link",
+        attrs: { href: "#", "aria-label": "Último" }
+      },
+      [
+        _c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("»")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Última")])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -66964,10 +66949,10 @@ var render = function() {
   return _c("div", { staticClass: "row justify-content-start pt-md-4" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "col-sm-12 col-md-9" }, [
-      _c(
-        "div",
-        { attrs: { "v-if": _vm.estadoApi == _vm.ESTADO_API.LISTO } },
+    _c(
+      "div",
+      { staticClass: "col-sm-12 col-md-9" },
+      [
         [
           _c("paginador-component"),
           _vm._v(" "),
@@ -66977,21 +66962,13 @@ var render = function() {
               items: _vm.boletines,
               fields: ["candidato", "fecha", "estado", "encabezado"]
             }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("div", { attrs: { "v-if": _vm.estadoApi == _vm.ESTADO_API.ERROR } }, [
-        _vm._v("ERROR")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { attrs: { "v-if": _vm.estadoApi == _vm.ESTADO_API.CARGANDO } },
-        [_vm._v("CARGANDO")]
-      )
-    ])
+          }),
+          _vm._v(" "),
+          _c("paginador-component")
+        ]
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = [
@@ -83518,9 +83495,8 @@ __webpack_require__.r(__webpack_exports__);
       commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR);
     });
   },
-  leerBoletinesDeURI: function leerBoletinesDeURI(_ref2) {
-    var commit = _ref2.commit,
-        uri = _ref2.uri;
+  leerBoletinesDeURI: function leerBoletinesDeURI(_ref2, uri) {
+    var commit = _ref2.commit;
     commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO);
     console.log(uri);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (r) {
@@ -83630,8 +83606,21 @@ __webpack_require__.r(__webpack_exports__);
   estadoApi: _enum_estado_api__WEBPACK_IMPORTED_MODULE_0__["default"].INICIADO,
   boletines: {
     data: [],
-    meta: {},
-    links: {}
+    meta: {
+      current_page: null,
+      from: null,
+      last_page: null,
+      path: null,
+      per_page: null,
+      to: null,
+      total: null
+    },
+    links: {
+      first: null,
+      last: null,
+      prev: null,
+      next: null
+    }
   }
 });
 

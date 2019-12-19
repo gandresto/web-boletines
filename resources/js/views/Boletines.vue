@@ -10,23 +10,23 @@
             </div>
         </div>
         <div class="col-sm-12 col-md-9">
-            <div :v-if="estadoApi == ESTADO_API.LISTO">
+            <template :v-if="estadoApi == ESTADO_API.LISTO">
                 <paginador-component></paginador-component>
                 <b-table
                     id="tabla-boletines"
                     :items="boletines"
                     :fields="['candidato', 'fecha', 'estado', 'encabezado']">
                 </b-table>
-            </div>
-            <div :v-if="estadoApi== ESTADO_API.ERROR">ERROR</div>
-            <div :v-if="estadoApi== ESTADO_API.CARGANDO">CARGANDO</div>
-            <!-- <b-pagination-nav :link-gen="linkGen" :number-of-pages="meta.last_page"></b-pagination-nav> -->
+                <paginador-component></paginador-component>
+            </template>
+            <!-- <template :v-else-if="estadoApi == ESTADO_API.ERROR">ERROR {{estadoApi}}</template>
+            <template :v-else-if="estadoApi == ESTADO_API.CARGANDO">CARGANDO {{estadoApi}}</template> -->
         </div>
     </div>
 </template>
 
 <script>
-    import { mapActions, mapState } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
     import ESTADO_API from '../enum-estado-api'
 
     export default {
@@ -48,10 +48,10 @@
             ])
         },
         computed: {
-            ...mapState({
-                boletines: state => state.boletines.data,
-                estadoApi: state => state.estadoApi,
-            }),
+            ...mapGetters([
+                'boletines',
+                'estadoApi',
+            ]),
         },
         created() {
             this.leerBoletines();

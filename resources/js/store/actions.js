@@ -17,7 +17,7 @@ export default {
                 commit('colocarEstadoApi', ESTADO_API.ERROR);
             });
     },
-    leerBoletinesDeURI({commit, uri}){
+    leerBoletinesDeURI({commit}, uri){
         commit('colocarEstadoApi', ESTADO_API.CARGANDO);
         console.log(uri);
         axios
