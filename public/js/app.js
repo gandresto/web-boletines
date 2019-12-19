@@ -2021,6 +2021,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -66997,47 +66999,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row justify-content-start pt-md-4" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-sm-12 col-md-9" },
-      [
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        { staticClass: "pt-4" },
         [
-          _c("paginador-component"),
+          _c(
+            "b-col",
+            { attrs: { sm: "12", md: "3" } },
+            [
+              _c("b-container", [
+                _c("div", { staticClass: "card-header" }, [
+                  _vm._v("\n                    Filtros\n                ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" })
+              ])
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("b-table", {
-            attrs: {
-              id: "tabla-boletines",
-              items: _vm.boletines,
-              fields: ["candidato", "fecha", "estado", "encabezado"]
-            }
-          }),
-          _vm._v(" "),
-          _c("paginador-component")
-        ]
-      ],
-      2
-    )
-  ])
+          _c(
+            "b-col",
+            { attrs: { sm: "12", md: "9" } },
+            [
+              [
+                _c("paginador-component"),
+                _vm._v(" "),
+                _c("b-table", {
+                  attrs: {
+                    id: "tabla-boletines",
+                    items: _vm.boletines,
+                    fields: ["candidato", "fecha", "estado", "encabezado"]
+                  }
+                }),
+                _vm._v(" "),
+                _c("paginador-component")
+              ]
+            ],
+            2
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-12 col-md-3" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _vm._v("\n                Filtros\n            ")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

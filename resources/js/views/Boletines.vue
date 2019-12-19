@@ -1,15 +1,16 @@
 <template>
-    <div class="row justify-content-start pt-md-4">
-        <div class="col-sm-12 col-md-3">
-            <div class="container">
+<b-container fluid>
+    <b-row class="pt-4">
+        <b-col sm="12" md="3">
+            <b-container>
                 <div class="card-header">
                     Filtros
                 </div>
                 <div class="card-body">
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-9">
+            </b-container>
+        </b-col>
+        <b-col sm="12" md="9">
             <template :v-if="estadoApi == ESTADO_API.LISTO">
                 <paginador-component></paginador-component>
                 <b-table
@@ -21,8 +22,9 @@
             </template>
             <!-- <template :v-else-if="estadoApi == ESTADO_API.ERROR">ERROR {{estadoApi}}</template>
             <template :v-else-if="estadoApi == ESTADO_API.CARGANDO">CARGANDO {{estadoApi}}</template> -->
-        </div>
-    </div>
+        </b-col>
+    </b-row>
+</b-container>
 </template>
 
 <script>
