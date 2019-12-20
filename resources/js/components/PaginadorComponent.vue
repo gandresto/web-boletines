@@ -54,7 +54,6 @@
     import api from '../services/api'
     export default {
         mounted() {
-            console.log('Paginador montado.');
         },
         methods: {
             leerSiguiente(){

@@ -42,8 +42,8 @@
 
     export default {
         mounted() {
-            console.log('Component Boletines Montado.');
-            // this.leerBoletines();
+            let uri = api.baseURL + 'boletines';
+            this.leerBoletinesDeURI(uri);
         },
         data() {
             return {
@@ -74,8 +74,6 @@
             ]),
         },
         created() {
-            let uri = api.baseURL + 'boletines';
-            this.leerBoletinesDeURI(uri);
         },
     }
 </script>

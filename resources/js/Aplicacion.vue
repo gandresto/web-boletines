@@ -19,7 +19,6 @@
 <script>
     export default {
         mounted() {
-            console.log('Componente principal montado.')
         }
     }
 </script>

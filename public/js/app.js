@@ -1857,9 +1857,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Componente principal montado.');
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -1980,9 +1978,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Paginador montado.');
-  },
+  mounted: function mounted() {},
   methods: _objectSpread({
     leerSiguiente: function leerSiguiente() {
       this.leerBoletinesDeURI(this.links.next);
@@ -2085,7 +2081,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component Boletines Montado.'); // this.leerBoletines();
+    var uri = _services_api__WEBPACK_IMPORTED_MODULE_2__["default"].baseURL + 'boletines';
+    this.leerBoletinesDeURI(uri);
   },
   data: function data() {
     return {
@@ -2107,10 +2104,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.estadoBoletines == _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__["default"].CARGANDO;
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['boletines', 'estadoApi', 'estadoBoletines'])),
-  created: function created() {
-    var uri = _services_api__WEBPACK_IMPORTED_MODULE_2__["default"].baseURL + 'boletines';
-    this.leerBoletinesDeURI(uri);
-  }
+  created: function created() {}
 });
 
 /***/ }),
