@@ -32,6 +32,15 @@
             </template>
         </b-col>
     </b-row>
+    <b-modal id="modal-boletin" hide-footer>
+        <template v-slot:modal-title>
+            {{boletinActual && boletinActual.encabezado ? boletinActual.encabezado : 'No encontrado'}}
+        </template>
+        <div class="d-block text-center">
+            <h3>Hello From This Modal!</h3>
+        </div>
+        <b-button class="mt-3" block @click="$bvModal.hide('modal-boletin')">Cerrar</b-button>
+    </b-modal>
 </b-container>
 </template>
 
@@ -50,11 +59,14 @@
             }
         },
         methods: {
-            verDetallesBoletin(item){
-                console.log(item);
+            verDetallesBoletin({id}){
+                console.log(id);
+                this.leerBoletinActual(id);
+                this.$bvModal.show('modal-boletin')
             },
             ...mapActions([
                 'leerBoletines',
+                'leerBoletinActual'
             ])
         },
         computed: {
@@ -64,6 +76,7 @@
             ...mapGetters([
                 'boletines',
                 'estadoApi',
+                'boletinActual',
             ]),
         },
         created() {
