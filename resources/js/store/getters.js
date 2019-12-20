@@ -3,4 +3,5 @@ export default {
     links: state => state.boletines.links,
     meta: state => state.boletines.meta,
     estadoApi: state => state.estadoApi,
+    boletinActual: state => state.boletinActual.data,
 }

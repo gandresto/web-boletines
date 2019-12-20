@@ -2031,6 +2031,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2043,15 +2052,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({
-    verDetallesBoletin: function verDetallesBoletin(item) {
-      console.log(item);
+    verDetallesBoletin: function verDetallesBoletin(_ref) {
+      var id = _ref.id;
+      console.log(id);
+      this.leerBoletinActual(id);
+      this.$bvModal.show('modal-boletin');
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletines'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletines', 'leerBoletinActual'])),
   computed: _objectSpread({
     estaCargando: function estaCargando() {
       return this.estadoApi == _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__["default"].CARGANDO;
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['boletines', 'estadoApi'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['boletines', 'estadoApi', 'boletinActual'])),
   created: function created() {
     this.leerBoletines();
   }
@@ -67730,6 +67742,53 @@ var render = function() {
           )
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modal-boletin", "hide-footer": "" },
+          scopedSlots: _vm._u([
+            {
+              key: "modal-title",
+              fn: function() {
+                return [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(
+                        _vm.boletinActual && _vm.boletinActual.encabezado
+                          ? _vm.boletinActual.encabezado
+                          : "No encontrado"
+                      ) +
+                      "\n        "
+                  )
+                ]
+              },
+              proxy: true
+            }
+          ])
+        },
+        [
+          _vm._v(" "),
+          _c("div", { staticClass: "d-block text-center" }, [
+            _c("h3", [_vm._v("Hello From This Modal!")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "b-button",
+            {
+              staticClass: "mt-3",
+              attrs: { block: "" },
+              on: {
+                click: function($event) {
+                  return _vm.$bvModal.hide("modal-boletin")
+                }
+              }
+            },
+            [_vm._v("Cerrar")]
+          )
+        ],
+        1
       )
     ],
     1
@@ -84270,6 +84329,20 @@ __webpack_require__.r(__webpack_exports__);
       commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR);
       console.log(err);
     });
+  },
+  leerBoletinActual: function leerBoletinActual(_ref4, id) {
+    var commit = _ref4.commit;
+    commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO);
+    var uri = "".concat(_services_api__WEBPACK_IMPORTED_MODULE_1__["default"].baseURL, "boletines/").concat(id);
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (r) {
+      return r.data;
+    }).then(function (boletin) {
+      commit('colocarBoletinActual', boletin);
+      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].LISTO);
+    })["catch"](function (err) {
+      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR);
+      console.log(err);
+    });
   }
 });
 
@@ -84296,6 +84369,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   estadoApi: function estadoApi(state) {
     return state.estadoApi;
+  },
+  boletinActual: function boletinActual(state) {
+    return state.boletinActual.data;
   }
 });
 
@@ -84348,6 +84424,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   colocarEstadoApi: function colocarEstadoApi(state, estadoApi) {
     state.estadoApi = estadoApi;
+  },
+  colocarBoletinActual: function colocarBoletinActual(state, boletin) {
+    state.boletinActual = boletin;
   }
 });
 
@@ -84383,7 +84462,8 @@ __webpack_require__.r(__webpack_exports__);
       prev: null,
       next: null
     }
-  }
+  },
+  boletinActual: {}
 });
 
 /***/ }),

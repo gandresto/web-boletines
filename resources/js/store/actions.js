@@ -35,15 +35,30 @@ export default {
         commit('colocarEstadoApi', ESTADO_API.CARGANDO);
         let uri = `${api.baseURL}boletines?page=${pag}`
         axios
-            .get(uri)
-            .then(r => r.data)
-            .then(boletines => {
-                commit('colocarBoletines', boletines);
-                commit('colocarEstadoApi', ESTADO_API.LISTO);
-            })
-            .catch(err=>{
-                commit('colocarEstadoApi', ESTADO_API.ERROR);
-                console.log(err);
-            });
+        .get(uri)
+        .then(r => r.data)
+        .then(boletines => {
+            commit('colocarBoletines', boletines);
+            commit('colocarEstadoApi', ESTADO_API.LISTO);
+        })
+        .catch(err=>{
+            commit('colocarEstadoApi', ESTADO_API.ERROR);
+            console.log(err);
+        });
     },
+    leerBoletinActual({commit}, id){
+        commit('colocarEstadoApi', ESTADO_API.CARGANDO);
+        let uri = `${api.baseURL}boletines/${id}`;
+        axios
+        .get(uri)
+        .then(r => r.data)
+        .then(boletin => {
+            commit('colocarBoletinActual', boletin);
+            commit('colocarEstadoApi', ESTADO_API.LISTO);
+        })
+        .catch(err=>{
+            commit('colocarEstadoApi', ESTADO_API.ERROR);
+            console.log(err);
+        });
+    }
 };

@@ -19,5 +19,8 @@ export default {
             prev: null,
             next: null
         },
-    }
+    },
+    boletinActual: {
+
+    },
 };
