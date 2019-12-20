@@ -1,3 +1,3 @@
 export default {
-    baseURL: 'http://localhost:8000/api/',
+    baseURL: `${process.env.MIX_APP_URL}/api/`,
 };
