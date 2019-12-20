@@ -51,7 +51,7 @@
 
 <script>
     import { mapActions, mapGetters } from 'vuex'
-
+    import api from '../services/api'
     export default {
         mounted() {
             console.log('Paginador montado.');
@@ -70,7 +70,8 @@
                 this.leerBoletinesDeURI(this.links.last);
             },
             leerPagina(pag){
-                this.leerBoletinesPorPagina(pag);
+                let uri = `${api.baseURL}boletines?page=${pag}`;
+                this.leerBoletinesDeURI(uri);
             },
             ...mapActions([
                 'leerBoletinesDeURI',
