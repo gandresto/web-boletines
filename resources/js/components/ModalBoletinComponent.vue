@@ -1,12 +1,24 @@
 <template>
-    <b-modal id="modal-boletin" size="lg" hide-footer>
-        <template v-slot:modal-title>
-            Boletin {{boletinActual ? boletinActual.id : ''}}
-        </template>
-        <div class="d-block text-center">
-            <h3>{{boletinActual && boletinActual.encabezado ? boletinActual.encabezado : 'Encabezado'}}</h3>
-        </div>
-        <b-button class="mt-3" block @click="$bvModal.hide('modal-boletin')">Cerrar</b-button>
+    <b-modal id="modal-boletin"
+            :title="titulo"
+            header-bg-variant="dark"
+            header-text-variant="light"
+            size="lg"
+            >
+        <b-container>
+            <h3>{{encabezado}}</h3>
+            <hr>
+            <ul>
+                <li v-for="data in sumarios" :key="data.id">
+                    {{data.sumario}}
+                </li>
+            </ul>
+            <hr>
+            <p>
+                {{primerParrafo}}
+            </p>
+        </b-container>
+        <!-- <b-button class="mt-3" block @click="$bvModal.hide('modal-boletin')">Cerrar</b-button> -->
     </b-modal>
 </template>
 <script>
@@ -23,8 +35,18 @@
                 'boletinActual',
                 'estadoBoletinActual'
             ]),
-            mostrarModal(){
-                return this.estadoBoletinActual == this.ESTADO.LISTO;
+            titulo(){
+                return `Boletín ${this.boletinActual ? this.boletinActual.id : ''}`;
+            },
+            encabezado(){
+                return this.boletinActual ? this.boletinActual.encabezado : 'Encabezado';
+            },
+            sumarios(){
+                // return [];
+                return this.boletinActual && this.boletinActual.sumarios ? this.boletinActual.sumarios : [];
+            },
+            primerParrafo(){
+                return this.boletinActual && this.boletinActual.primer_parrafo ? this.boletinActual.primer_parrafo : '';
             }
         },
     }

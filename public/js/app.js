@@ -1890,6 +1890,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1899,8 +1911,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['boletinActual', 'estadoBoletinActual']), {
-    mostrarModal: function mostrarModal() {
-      return this.estadoBoletinActual == this.ESTADO.LISTO;
+    titulo: function titulo() {
+      return "Bolet\xEDn ".concat(this.boletinActual ? this.boletinActual.id : '');
+    },
+    encabezado: function encabezado() {
+      return this.boletinActual ? this.boletinActual.encabezado : 'Encabezado';
+    },
+    sumarios: function sumarios() {
+      // return [];
+      return this.boletinActual && this.boletinActual.sumarios ? this.boletinActual.sumarios : [];
+    },
+    primerParrafo: function primerParrafo() {
+      return this.boletinActual && this.boletinActual.primer_parrafo ? this.boletinActual.primer_parrafo : '';
     }
   })
 });
@@ -67557,50 +67579,38 @@ var render = function() {
   return _c(
     "b-modal",
     {
-      attrs: { id: "modal-boletin", size: "lg", "hide-footer": "" },
-      scopedSlots: _vm._u([
-        {
-          key: "modal-title",
-          fn: function() {
-            return [
-              _vm._v(
-                "\n        Boletin " +
-                  _vm._s(_vm.boletinActual ? _vm.boletinActual.id : "") +
-                  "\n    "
-              )
-            ]
-          },
-          proxy: true
-        }
-      ])
+      attrs: {
+        id: "modal-boletin",
+        title: _vm.titulo,
+        "header-bg-variant": "dark",
+        "header-text-variant": "light",
+        size: "lg"
+      }
     },
     [
-      _vm._v(" "),
-      _c("div", { staticClass: "d-block text-center" }, [
-        _c("h3", [
-          _vm._v(
-            _vm._s(
-              _vm.boletinActual && _vm.boletinActual.encabezado
-                ? _vm.boletinActual.encabezado
-                : "Encabezado"
-            )
-          )
+      _c("b-container", [
+        _c("h3", [_vm._v(_vm._s(_vm.encabezado))]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c(
+          "ul",
+          _vm._l(_vm.sumarios, function(data) {
+            return _c("li", { key: data.id }, [
+              _vm._v(
+                "\n                " + _vm._s(data.sumario) + "\n            "
+              )
+            ])
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("\n            " + _vm._s(_vm.primerParrafo) + "\n        ")
         ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "b-button",
-        {
-          staticClass: "mt-3",
-          attrs: { block: "" },
-          on: {
-            click: function($event) {
-              return _vm.$bvModal.hide("modal-boletin")
-            }
-          }
-        },
-        [_vm._v("Cerrar")]
-      )
+      ])
     ],
     1
   )
