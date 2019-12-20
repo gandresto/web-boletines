@@ -3,62 +3,47 @@ import api from '../services/api'
 import ESTADO_API from '../enum-estado-api'
 
 export default {
-    leerBoletines({commit}){
-        commit('colocarEstadoApi', ESTADO_API.CARGANDO);
-        let uri = api.baseURL + 'boletines';
-        axios
-            .get(uri)
-            .then(r => r.data)
-            .then(boletines => {
-                commit('colocarBoletines', boletines);
-                commit('colocarEstadoApi', ESTADO_API.LISTO);
-            })
-            .catch(err=>{
-                commit('colocarEstadoApi', ESTADO_API.ERROR);
-            });
-    },
     leerBoletinesDeURI({commit}, uri){
+        return new Promise((res, rej) => {
         commit('colocarEstadoApi', ESTADO_API.CARGANDO);
+        commit('colocarEstadoBoletines', ESTADO_API.CARGANDO);
         axios
             .get(uri)
             .then(r => r.data)
             .then(boletines => {
                 commit('colocarBoletines', boletines);
                 commit('colocarEstadoApi', ESTADO_API.LISTO);
+                commit('colocarEstadoBoletines', ESTADO_API.LISTO);
+                res();
             })
             .catch(err=>{
                 commit('colocarEstadoApi', ESTADO_API.ERROR);
+                commit('colocarEstadoBoletines', ESTADO_API.ERROR);
                 console.log(err);
+                rej();
             });
-    },
-    leerBoletinesPorPagina({commit}, pag){
-        commit('colocarEstadoApi', ESTADO_API.CARGANDO);
-        let uri = `${api.baseURL}boletines?page=${pag}`
-        axios
-        .get(uri)
-        .then(r => r.data)
-        .then(boletines => {
-            commit('colocarBoletines', boletines);
-            commit('colocarEstadoApi', ESTADO_API.LISTO);
-        })
-        .catch(err=>{
-            commit('colocarEstadoApi', ESTADO_API.ERROR);
-            console.log(err);
         });
     },
-    leerBoletinActual({commit}, id){
-        commit('colocarEstadoApi', ESTADO_API.CARGANDO);
-        let uri = `${api.baseURL}boletines/${id}`;
-        axios
-        .get(uri)
-        .then(r => r.data)
-        .then(boletin => {
-            commit('colocarBoletinActual', boletin);
-            commit('colocarEstadoApi', ESTADO_API.LISTO);
+    leerBoletinActualPorId({commit}, id){
+        return new Promise((res, rej) => {
+            commit('colocarEstadoApi', ESTADO_API.CARGANDO);
+            commit('colocarEstadoBoletinActual', ESTADO_API.CARGANDO);
+            let uri = `${api.baseURL}boletines/${id}`;
+            axios
+            .get(uri)
+            .then(r => r.data)
+            .then(boletin => {
+                commit('colocarBoletinActual', boletin);
+                commit('colocarEstadoApi', ESTADO_API.LISTO);
+                commit('colocarEstadoBoletinActual', ESTADO_API.LISTO);
+                res();
+            })
+            .catch(err=>{
+                commit('colocarEstadoApi', ESTADO_API.ERROR);
+                commit('colocarEstadoBoletinActual', ESTADO_API.ERROR);
+                console.log(err);
+                rej();
+            });
         })
-        .catch(err=>{
-            commit('colocarEstadoApi', ESTADO_API.ERROR);
-            console.log(err);
-        });
     }
 };

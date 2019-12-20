@@ -5,6 +5,12 @@ export default {
     colocarEstadoApi(state, estadoApi){
         state.estadoApi = estadoApi;
     },
+    colocarEstadoBoletines(state, estadoBoletine){
+        state.estadoBoletines = estadoBoletine;
+    },
+    colocarEstadoBoletinActual(state, estadoBoletinActual){
+        state.estadoBoletinActual = estadoBoletinActual;
+    },
     colocarBoletinActual(state, boletin){
         state.boletinActual = boletin;
     }

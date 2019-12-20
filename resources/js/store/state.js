@@ -1,7 +1,9 @@
-import ESTADO_API from '../enum-estado-api'
+import ESTADO from '../enum-estado-api'
 
 export default {
-    estadoApi: ESTADO_API.INICIADO,
+    estadoApi: ESTADO.INICIADO,
+    estadoBoletines: ESTADO.INICIADO,
+    estadoBoletinActual:  ESTADO.INICIADO,
     boletines : {
         data:[],
         meta:{
@@ -21,6 +23,27 @@ export default {
         },
     },
     boletinActual: {
-
+        id: null,
+        candidato: null,
+        num_boletin: null,
+        fecha: null,
+        localidad: null,
+        estado: null,
+        encabezado: null,
+        primer_parrafo: null,
+        url: null,
+        sumarios: [
+            {
+                id: null,
+                sumario: null,
+            },
+        ],
+        categorias: [
+            {
+                id: null,
+                categoria: null,
+                explicacion: null,
+            }
+        ]
     },
 };
