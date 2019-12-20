@@ -1864,6 +1864,51 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ModalBoletinComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ModalBoletinComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../enum-estado-api */ "./resources/js/enum-estado-api.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      ESTADO: _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__["default"]
+    };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['boletinActual', 'estadoBoletinActual']), {
+    mostrarModal: function mostrarModal() {
+      return this.estadoBoletinActual == this.ESTADO.LISTO;
+    }
+  })
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PaginadorComponent.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PaginadorComponent.vue?vue&type=script&lang=js& ***!
@@ -1874,6 +1919,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _services_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/api */ "./resources/js/services/api.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1932,6 +1978,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Paginador montado.');
@@ -1950,7 +1997,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.leerBoletinesDeURI(this.links.last);
     },
     leerPagina: function leerPagina(pag) {
-      this.leerBoletinesPorPagina(pag);
+      var uri = "".concat(_services_api__WEBPACK_IMPORTED_MODULE_1__["default"].baseURL, "boletines?page=").concat(pag);
+      this.leerBoletinesDeURI(uri);
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletinesDeURI', 'leerBoletinesPorPagina'])),
   computed: _objectSpread({
@@ -1988,6 +2036,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../enum-estado-api */ "./resources/js/enum-estado-api.js");
+/* harmony import */ var _services_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/api */ "./resources/js/services/api.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2031,15 +2080,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2053,19 +2094,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: _objectSpread({
     verDetallesBoletin: function verDetallesBoletin(_ref) {
+      var _this = this;
+
       var id = _ref.id;
-      console.log(id);
-      this.leerBoletinActual(id);
-      this.$bvModal.show('modal-boletin');
+      this.leerBoletinActualPorId(id).then(function () {
+        _this.$bvModal.show('modal-boletin');
+      });
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletines', 'leerBoletinActual'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletines', 'leerBoletinActualPorId', 'leerBoletinesDeURI'])),
   computed: _objectSpread({
     estaCargando: function estaCargando() {
-      return this.estadoApi == _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__["default"].CARGANDO;
+      return this.estadoBoletines == _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__["default"].CARGANDO;
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['boletines', 'estadoApi', 'boletinActual'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['boletines', 'estadoApi', 'estadoBoletines'])),
   created: function created() {
-    this.leerBoletines();
+    var uri = _services_api__WEBPACK_IMPORTED_MODULE_2__["default"].baseURL + 'boletines';
+    this.leerBoletinesDeURI(uri);
   }
 });
 
@@ -67487,7 +67531,82 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("router-view")
+      _c("router-view"),
+      _vm._v(" "),
+      _c("modal-boletin-component")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ModalBoletinComponent.vue?vue&type=template&id=6d42ec48&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ModalBoletinComponent.vue?vue&type=template&id=6d42ec48& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-modal",
+    {
+      attrs: { id: "modal-boletin", size: "lg", "hide-footer": "" },
+      scopedSlots: _vm._u([
+        {
+          key: "modal-title",
+          fn: function() {
+            return [
+              _vm._v(
+                "\n        Boletin " +
+                  _vm._s(_vm.boletinActual ? _vm.boletinActual.id : "") +
+                  "\n    "
+              )
+            ]
+          },
+          proxy: true
+        }
+      ])
+    },
+    [
+      _vm._v(" "),
+      _c("div", { staticClass: "d-block text-center" }, [
+        _c("h3", [
+          _vm._v(
+            _vm._s(
+              _vm.boletinActual && _vm.boletinActual.encabezado
+                ? _vm.boletinActual.encabezado
+                : "Encabezado"
+            )
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "b-button",
+        {
+          staticClass: "mt-3",
+          attrs: { block: "" },
+          on: {
+            click: function($event) {
+              return _vm.$bvModal.hide("modal-boletin")
+            }
+          }
+        },
+        [_vm._v("Cerrar")]
+      )
     ],
     1
   )
@@ -67560,7 +67679,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\r\n                Anterior\r\n            ")]
+              [_vm._v("\n                Anterior\n            ")]
             )
           ]
         ),
@@ -67589,9 +67708,9 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\r\n                    " +
+                      "\n                    " +
                         _vm._s(n) +
-                        "\r\n                "
+                        "\n                "
                     )
                   ]
                 )
@@ -67616,7 +67735,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\r\n                Siguiente\r\n            ")]
+              [_vm._v("\n                Siguiente\n            ")]
             )
           ]
         ),
@@ -67739,53 +67858,6 @@ var render = function() {
               ]
             ],
             2
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-modal",
-        {
-          attrs: { id: "modal-boletin", "hide-footer": "" },
-          scopedSlots: _vm._u([
-            {
-              key: "modal-title",
-              fn: function() {
-                return [
-                  _vm._v(
-                    "\n            " +
-                      _vm._s(
-                        _vm.boletinActual && _vm.boletinActual.encabezado
-                          ? _vm.boletinActual.encabezado
-                          : "No encontrado"
-                      ) +
-                      "\n        "
-                  )
-                ]
-              },
-              proxy: true
-            }
-          ])
-        },
-        [
-          _vm._v(" "),
-          _c("div", { staticClass: "d-block text-center" }, [
-            _c("h3", [_vm._v("Hello From This Modal!")])
-          ]),
-          _vm._v(" "),
-          _c(
-            "b-button",
-            {
-              staticClass: "mt-3",
-              attrs: { block: "" },
-              on: {
-                click: function($event) {
-                  return _vm.$bvModal.hide("modal-boletin")
-                }
-              }
-            },
-            [_vm._v("Cerrar")]
           )
         ],
         1
@@ -84069,6 +84141,7 @@ axios__WEBPACK_IMPORTED_MODULE_6___default.a.defaults.headers.common = {
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('paginador-component', __webpack_require__(/*! ./components/PaginadorComponent.vue */ "./resources/js/components/PaginadorComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('modal-boletin-component', __webpack_require__(/*! ./components/ModalBoletinComponent.vue */ "./resources/js/components/ModalBoletinComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -84127,6 +84200,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/ModalBoletinComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/ModalBoletinComponent.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ModalBoletinComponent_vue_vue_type_template_id_6d42ec48___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModalBoletinComponent.vue?vue&type=template&id=6d42ec48& */ "./resources/js/components/ModalBoletinComponent.vue?vue&type=template&id=6d42ec48&");
+/* harmony import */ var _ModalBoletinComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalBoletinComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ModalBoletinComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ModalBoletinComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ModalBoletinComponent_vue_vue_type_template_id_6d42ec48___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ModalBoletinComponent_vue_vue_type_template_id_6d42ec48___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ModalBoletinComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ModalBoletinComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/ModalBoletinComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalBoletinComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ModalBoletinComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ModalBoletinComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalBoletinComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ModalBoletinComponent.vue?vue&type=template&id=6d42ec48&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/ModalBoletinComponent.vue?vue&type=template&id=6d42ec48& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalBoletinComponent_vue_vue_type_template_id_6d42ec48___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ModalBoletinComponent.vue?vue&type=template&id=6d42ec48& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ModalBoletinComponent.vue?vue&type=template&id=6d42ec48&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalBoletinComponent_vue_vue_type_template_id_6d42ec48___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalBoletinComponent_vue_vue_type_template_id_6d42ec48___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
@@ -84290,58 +84432,45 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  leerBoletines: function leerBoletines(_ref) {
+  leerBoletinesDeURI: function leerBoletinesDeURI(_ref, uri) {
     var commit = _ref.commit;
-    commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO);
-    var uri = _services_api__WEBPACK_IMPORTED_MODULE_1__["default"].baseURL + 'boletines';
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (r) {
-      return r.data;
-    }).then(function (boletines) {
-      commit('colocarBoletines', boletines);
-      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].LISTO);
-    })["catch"](function (err) {
-      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR);
+    return new Promise(function (res, rej) {
+      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO);
+      commit('colocarEstadoBoletines', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (r) {
+        return r.data;
+      }).then(function (boletines) {
+        commit('colocarBoletines', boletines);
+        commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].LISTO);
+        commit('colocarEstadoBoletines', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].LISTO);
+        res();
+      })["catch"](function (err) {
+        commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR);
+        commit('colocarEstadoBoletines', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR);
+        console.log(err);
+        rej();
+      });
     });
   },
-  leerBoletinesDeURI: function leerBoletinesDeURI(_ref2, uri) {
+  leerBoletinActualPorId: function leerBoletinActualPorId(_ref2, id) {
     var commit = _ref2.commit;
-    commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO);
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (r) {
-      return r.data;
-    }).then(function (boletines) {
-      commit('colocarBoletines', boletines);
-      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].LISTO);
-    })["catch"](function (err) {
-      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR);
-      console.log(err);
-    });
-  },
-  leerBoletinesPorPagina: function leerBoletinesPorPagina(_ref3, pag) {
-    var commit = _ref3.commit;
-    commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO);
-    var uri = "".concat(_services_api__WEBPACK_IMPORTED_MODULE_1__["default"].baseURL, "boletines?page=").concat(pag);
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (r) {
-      return r.data;
-    }).then(function (boletines) {
-      commit('colocarBoletines', boletines);
-      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].LISTO);
-    })["catch"](function (err) {
-      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR);
-      console.log(err);
-    });
-  },
-  leerBoletinActual: function leerBoletinActual(_ref4, id) {
-    var commit = _ref4.commit;
-    commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO);
-    var uri = "".concat(_services_api__WEBPACK_IMPORTED_MODULE_1__["default"].baseURL, "boletines/").concat(id);
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (r) {
-      return r.data;
-    }).then(function (boletin) {
-      commit('colocarBoletinActual', boletin);
-      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].LISTO);
-    })["catch"](function (err) {
-      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR);
-      console.log(err);
+    return new Promise(function (res, rej) {
+      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO);
+      commit('colocarEstadoBoletinActual', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO);
+      var uri = "".concat(_services_api__WEBPACK_IMPORTED_MODULE_1__["default"].baseURL, "boletines/").concat(id);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (r) {
+        return r.data;
+      }).then(function (boletin) {
+        commit('colocarBoletinActual', boletin);
+        commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].LISTO);
+        commit('colocarEstadoBoletinActual', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].LISTO);
+        res();
+      })["catch"](function (err) {
+        commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR);
+        commit('colocarEstadoBoletinActual', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR);
+        console.log(err);
+        rej();
+      });
     });
   }
 });
@@ -84372,6 +84501,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   boletinActual: function boletinActual(state) {
     return state.boletinActual.data;
+  },
+  estadoBoletines: function estadoBoletines(state) {
+    return state.estadoBoletines;
+  },
+  estadoBoletinActual: function estadoBoletinActual(state) {
+    return state.estadoBoletinActual;
   }
 });
 
@@ -84425,6 +84560,12 @@ __webpack_require__.r(__webpack_exports__);
   colocarEstadoApi: function colocarEstadoApi(state, estadoApi) {
     state.estadoApi = estadoApi;
   },
+  colocarEstadoBoletines: function colocarEstadoBoletines(state, estadoBoletine) {
+    state.estadoBoletines = estadoBoletine;
+  },
+  colocarEstadoBoletinActual: function colocarEstadoBoletinActual(state, estadoBoletinActual) {
+    state.estadoBoletinActual = estadoBoletinActual;
+  },
   colocarBoletinActual: function colocarBoletinActual(state, boletin) {
     state.boletinActual = boletin;
   }
@@ -84445,6 +84586,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   estadoApi: _enum_estado_api__WEBPACK_IMPORTED_MODULE_0__["default"].INICIADO,
+  estadoBoletines: _enum_estado_api__WEBPACK_IMPORTED_MODULE_0__["default"].INICIADO,
+  estadoBoletinActual: _enum_estado_api__WEBPACK_IMPORTED_MODULE_0__["default"].INICIADO,
   boletines: {
     data: [],
     meta: {
@@ -84463,7 +84606,26 @@ __webpack_require__.r(__webpack_exports__);
       next: null
     }
   },
-  boletinActual: {}
+  boletinActual: {
+    id: null,
+    candidato: null,
+    num_boletin: null,
+    fecha: null,
+    localidad: null,
+    estado: null,
+    encabezado: null,
+    primer_parrafo: null,
+    url: null,
+    sumarios: [{
+      id: null,
+      sumario: null
+    }],
+    categorias: [{
+      id: null,
+      categoria: null,
+      explicacion: null
+    }]
+  }
 });
 
 /***/ }),

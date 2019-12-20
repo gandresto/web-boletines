@@ -12,7 +12,7 @@
     </b-navbar>
     <!-- Contenido -->
     <router-view></router-view>
-
+    <modal-boletin-component></modal-boletin-component>
 </div>
 </template>
 

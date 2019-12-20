@@ -32,21 +32,13 @@
             </template>
         </b-col>
     </b-row>
-    <b-modal id="modal-boletin" hide-footer>
-        <template v-slot:modal-title>
-            {{boletinActual && boletinActual.encabezado ? boletinActual.encabezado : 'No encontrado'}}
-        </template>
-        <div class="d-block text-center">
-            <h3>Hello From This Modal!</h3>
-        </div>
-        <b-button class="mt-3" block @click="$bvModal.hide('modal-boletin')">Cerrar</b-button>
-    </b-modal>
 </b-container>
 </template>
 
 <script>
     import { mapActions, mapGetters } from 'vuex'
     import ESTADO_API from '../enum-estado-api'
+    import api from '../services/api'
 
     export default {
         mounted() {
@@ -60,27 +52,30 @@
         },
         methods: {
             verDetallesBoletin({id}){
-                console.log(id);
-                this.leerBoletinActual(id);
-                this.$bvModal.show('modal-boletin')
+                this.leerBoletinActualPorId(id)
+                    .then(() =>{
+                        this.$bvModal.show('modal-boletin');
+                    });
             },
             ...mapActions([
                 'leerBoletines',
-                'leerBoletinActual'
+                'leerBoletinActualPorId',
+                'leerBoletinesDeURI'
             ])
         },
         computed: {
             estaCargando(){
-                return  this.estadoApi == ESTADO_API.CARGANDO;
+                return  this.estadoBoletines == ESTADO_API.CARGANDO;
             },
             ...mapGetters([
                 'boletines',
                 'estadoApi',
-                'boletinActual',
+                'estadoBoletines',
             ]),
         },
         created() {
-            this.leerBoletines();
+            let uri = api.baseURL + 'boletines';
+            this.leerBoletinesDeURI(uri);
         },
     }
 </script>
