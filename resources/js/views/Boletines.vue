@@ -11,8 +11,10 @@
             </b-container>
         </b-col>
         <b-col sm="12" md="9">
-            <template :v-if="estadoApi == ESTADO_API.LISTO">
+            <b-col cols="12" style="overflow-x:auto">
                 <paginador-component></paginador-component>
+            </b-col>
+            <b-col cols="12" style="overflow-x:auto">
                 <b-table striped hover
                     id="tabla-boletines"
                     :items="boletines"
@@ -28,8 +30,10 @@
                         </div>
                     </template>
                 </b-table>
+            </b-col>
+            <b-col cols="12" style="overflow-x:auto">
                 <paginador-component></paginador-component>
-            </template>
+            </b-col>
         </b-col>
     </b-row>
 </b-container>

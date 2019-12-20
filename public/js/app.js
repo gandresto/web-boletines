@@ -2098,6 +2098,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -67822,46 +67826,72 @@ var render = function() {
             "b-col",
             { attrs: { sm: "12", md: "9" } },
             [
-              [
-                _c("paginador-component"),
-                _vm._v(" "),
-                _c("b-table", {
-                  attrs: {
-                    striped: "",
-                    hover: "",
-                    id: "tabla-boletines",
-                    items: _vm.boletines,
-                    fields: ["candidato", "fecha", "estado", "encabezado"],
-                    busy: _vm.estaCargando,
-                    "head-variant": "dark"
-                  },
-                  on: { "row-clicked": _vm.verDetallesBoletin },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "table-busy",
-                      fn: function() {
-                        return [
-                          _c(
-                            "div",
-                            { staticClass: "text-center text-primary my-2" },
-                            [
-                              _c("b-spinner", { staticClass: "align-middle" }),
-                              _vm._v(" "),
-                              _c("strong", [_vm._v("Cargando...")])
-                            ],
-                            1
-                          )
-                        ]
-                      },
-                      proxy: true
-                    }
-                  ])
-                }),
-                _vm._v(" "),
-                _c("paginador-component")
-              ]
+              _c(
+                "b-col",
+                {
+                  staticStyle: { "overflow-x": "auto" },
+                  attrs: { cols: "12" }
+                },
+                [_c("paginador-component")],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                {
+                  staticStyle: { "overflow-x": "auto" },
+                  attrs: { cols: "12" }
+                },
+                [
+                  _c("b-table", {
+                    attrs: {
+                      striped: "",
+                      hover: "",
+                      id: "tabla-boletines",
+                      items: _vm.boletines,
+                      fields: ["candidato", "fecha", "estado", "encabezado"],
+                      busy: _vm.estaCargando,
+                      "head-variant": "dark"
+                    },
+                    on: { "row-clicked": _vm.verDetallesBoletin },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "table-busy",
+                        fn: function() {
+                          return [
+                            _c(
+                              "div",
+                              { staticClass: "text-center text-primary my-2" },
+                              [
+                                _c("b-spinner", {
+                                  staticClass: "align-middle"
+                                }),
+                                _vm._v(" "),
+                                _c("strong", [_vm._v("Cargando...")])
+                              ],
+                              1
+                            )
+                          ]
+                        },
+                        proxy: true
+                      }
+                    ])
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                {
+                  staticStyle: { "overflow-x": "auto" },
+                  attrs: { cols: "12" }
+                },
+                [_c("paginador-component")],
+                1
+              )
             ],
-            2
+            1
           )
         ],
         1
@@ -84414,7 +84444,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  baseURL: 'http://localhost:8000/api/'
+  baseURL: "".concat("http://192.168.0.2:8000", "/api/")
 });
 
 /***/ }),
