@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Categoria;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoriaResource;
 use App\Http\Resources\CategoriasCollection;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,7 @@ class CategoriaController extends Controller
      */
     public function show(int $categoria)
     {
-        //
+        return new CategoriaResource(Categoria::findOrFail($categoria));
     }
 
     /**

@@ -18,7 +18,7 @@ class BoletinResource extends JsonResource
             parent::toArray($request),
             [
                 'sumarios' => SumarioResource::collection($this->sumarios),
-                'categorias' => new CategoriasCollection($this->categorias),
+                'categorias' => CategoriaExplicacionResource::collection($this->categorias),
             ]);
     }
 }
