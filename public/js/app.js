@@ -1873,12 +1873,28 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../enum-estado-api */ "./resources/js/enum-estado-api.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1923,6 +1939,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     primerParrafo: function primerParrafo() {
       return this.boletinActual && this.boletinActual.primer_parrafo ? this.boletinActual.primer_parrafo : '';
+    },
+    fecha: function fecha() {
+      if (this.boletinActual && this.boletinActual.fecha) {
+        // Le agrego 12 horas para compensar el horario de México (GMT-6)
+        var strDate = [].concat(_toConsumableArray(this.boletinActual.fecha.split('-')), ['12']);
+        var numDate = strDate.map(function (e) {
+          return parseInt(e, 10);
+        }); // El conteo de meses inicia en 0, así que le resto 1 a el campo mes
+
+        numDate[1] -= 1;
+        var d = new Date(Date.UTC.apply(Date, _toConsumableArray(numDate)));
+        return d.toLocaleDateString('es', {
+          dateStyle: "long"
+        });
+      } else return '';
     }
   })
 });
@@ -67588,11 +67619,53 @@ var render = function() {
         title: _vm.titulo,
         "header-bg-variant": "dark",
         "header-text-variant": "light",
+        scrollable: "",
         size: "lg"
-      }
+      },
+      scopedSlots: _vm._u([
+        {
+          key: "modal-footer",
+          fn: function() {
+            return [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.$bvModal.hide("modal-boletin")
+                    }
+                  }
+                },
+                [_vm._v("Calcelar")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.$bvModal.hide("modal-boletin")
+                    }
+                  }
+                },
+                [_vm._v("Aceptar")]
+              )
+            ]
+          },
+          proxy: true
+        }
+      ])
     },
     [
       _c("b-container", [
+        _c("div", { staticClass: "text-right" }, [
+          _c("p", [_vm._v(_vm._s(_vm.fecha))])
+        ]),
+        _vm._v(" "),
         _c("h3", [_vm._v(_vm._s(_vm.encabezado))]),
         _vm._v(" "),
         _c("hr"),
@@ -84444,7 +84517,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  baseURL: "".concat("http://192.168.0.2:8000", "/api/")
+  baseURL: "".concat("http://localhost:8000", "/api/")
 });
 
 /***/ }),
