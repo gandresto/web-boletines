@@ -48,6 +48,7 @@
         mounted() {
             let uri = api.baseURL + 'boletines';
             this.leerBoletinesDeURI(uri);
+            this.leerCategorias();
         },
         data() {
             return {
@@ -64,7 +65,8 @@
             ...mapActions([
                 'leerBoletines',
                 'leerBoletinActualPorId',
-                'leerBoletinesDeURI'
+                'leerBoletinesDeURI',
+                'leerCategorias'
             ])
         },
         computed: {

@@ -13,5 +13,8 @@ export default {
     },
     colocarBoletinActual(state, boletin){
         state.boletinActual = boletin;
-    }
+    },
+    colocarCategorias(state, categorias){
+        state.categorias = categorias;
+},
 };

@@ -44,6 +44,28 @@ export default {
                 console.log(err);
                 rej();
             });
-        })
-    }
+        });
+    },
+    leerCategorias({commit}){
+        return new Promise((res, rej) => {
+            commit('colocarEstadoApi', ESTADO_API.CARGANDO);
+            // commit('colocarEstadoBoletinActual', ESTADO_API.CARGANDO);
+            let uri = `${api.baseURL}categorias/`;
+            axios
+            .get(uri)
+            .then(r => r.data.data)
+            .then(categorias => {
+                commit('colocarCategorias', categorias);
+                commit('colocarEstadoApi', ESTADO_API.LISTO);
+                // commit('colocarEstadoBoletinActual', ESTADO_API.LISTO);
+                res();
+            })
+            .catch(err=>{
+                commit('colocarEstadoApi', ESTADO_API.ERROR);
+                // commit('colocarEstadoBoletinActual', ESTADO_API.ERROR);
+                console.log(err);
+                rej();
+            });
+        });
+    },
 };

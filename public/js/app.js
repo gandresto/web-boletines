@@ -1918,6 +1918,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1926,7 +1943,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       ESTADO: _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['boletinActual', 'estadoBoletinActual']), {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['boletinActual', 'estadoBoletinActual', 'categorias']), {
     titulo: function titulo() {
       return "Bolet\xEDn ".concat(this.boletinActual ? this.boletinActual.id : '');
     },
@@ -2140,6 +2157,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var uri = _services_api__WEBPACK_IMPORTED_MODULE_2__["default"].baseURL + 'boletines';
     this.leerBoletinesDeURI(uri);
+    this.leerCategorias();
   },
   data: function data() {
     return {
@@ -2155,7 +2173,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.$bvModal.show('modal-boletin');
       });
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletines', 'leerBoletinActualPorId', 'leerBoletinesDeURI'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['leerBoletines', 'leerBoletinActualPorId', 'leerBoletinesDeURI', 'leerCategorias'])),
   computed: _objectSpread({
     estaCargando: function estaCargando() {
       return this.estadoBoletines == _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__["default"].CARGANDO;
@@ -67686,7 +67704,38 @@ var render = function() {
         _vm._v(" "),
         _c("p", [
           _vm._v("\n            " + _vm._s(_vm.primerParrafo) + "\n        ")
-        ])
+        ]),
+        _vm._v(" "),
+        _vm.categorias
+          ? _c(
+              "div",
+              { staticClass: "form-check" },
+              _vm._l(_vm.categorias, function(categoria) {
+                return _c(
+                  "label",
+                  { key: categoria.id, staticClass: "form-check-label" },
+                  [
+                    _c("input", {
+                      staticClass: "form-check-input",
+                      attrs: {
+                        type: "checkbox",
+                        name: "categoria.nombre",
+                        id: "",
+                        value: "categoria.id",
+                        checked: "false"
+                      }
+                    }),
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(categoria.nombre) +
+                        "\n            "
+                    )
+                  ]
+                )
+              }),
+              0
+            )
+          : _vm._e()
       ])
     ],
     1
@@ -84579,6 +84628,27 @@ __webpack_require__.r(__webpack_exports__);
         rej();
       });
     });
+  },
+  leerCategorias: function leerCategorias(_ref3) {
+    var commit = _ref3.commit;
+    return new Promise(function (res, rej) {
+      commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].CARGANDO); // commit('colocarEstadoBoletinActual', ESTADO_API.CARGANDO);
+
+      var uri = "".concat(_services_api__WEBPACK_IMPORTED_MODULE_1__["default"].baseURL, "categorias/");
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (r) {
+        return r.data.data;
+      }).then(function (categorias) {
+        commit('colocarCategorias', categorias);
+        commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].LISTO); // commit('colocarEstadoBoletinActual', ESTADO_API.LISTO);
+
+        res();
+      })["catch"](function (err) {
+        commit('colocarEstadoApi', _enum_estado_api__WEBPACK_IMPORTED_MODULE_2__["default"].ERROR); // commit('colocarEstadoBoletinActual', ESTADO_API.ERROR);
+
+        console.log(err);
+        rej();
+      });
+    });
   }
 });
 
@@ -84594,6 +84664,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
+  categorias: function categorias(state) {
+    return state.categorias;
+  },
   boletines: function boletines(state) {
     return state.boletines.data;
   },
@@ -84603,11 +84676,11 @@ __webpack_require__.r(__webpack_exports__);
   meta: function meta(state) {
     return state.boletines.meta;
   },
-  estadoApi: function estadoApi(state) {
-    return state.estadoApi;
-  },
   boletinActual: function boletinActual(state) {
     return state.boletinActual.data;
+  },
+  estadoApi: function estadoApi(state) {
+    return state.estadoApi;
   },
   estadoBoletines: function estadoBoletines(state) {
     return state.estadoBoletines;
@@ -84675,6 +84748,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   colocarBoletinActual: function colocarBoletinActual(state, boletin) {
     state.boletinActual = boletin;
+  },
+  colocarCategorias: function colocarCategorias(state, categorias) {
+    state.categorias = categorias;
   }
 });
 
@@ -84732,6 +84808,10 @@ __webpack_require__.r(__webpack_exports__);
       categoria: null,
       explicacion: null
     }]
+  },
+  categorias: {
+    persuasivas: [],
+    periodisticas: []
   }
 });
 

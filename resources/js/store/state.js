@@ -46,4 +46,12 @@ export default {
             }
         ]
     },
+    categorias : {
+        persuasivas: [
+
+        ],
+        periodisticas: [
+
+        ],
+    },
 };
