@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Boletin;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\BoletinesCollection;
 use App\Http\Resources\BoletinResource;
+use App\Http\Resources\PaginadorResource;
 use Illuminate\Cache\RetrievesMultipleKeys;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -19,7 +19,10 @@ class BoletinController extends Controller
      */
     public function index()
     {
-        return new BoletinesCollection(Boletin::paginate(15));
+        // return Boletin::orderBy('fecha', 'ASC')->paginate(15)->toArray();
+        return new PaginadorResource(
+            Boletin::orderBy('fecha', 'ASC')->paginate(15)
+        );
     }
 
     /**
