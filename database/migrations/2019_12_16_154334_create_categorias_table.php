@@ -15,9 +15,10 @@ class CreateCategoriasTable extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre', 25);
-            $table->enum('tipo', ['persuacion', 'periodistica']);
+            $table->string('nombre', 70);
+            $table->enum('tipo', ['persuasión', 'periodística']);
 
+            $table->index('tipo');
             // $table->timestamps();
         });
     }

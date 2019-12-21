@@ -17,7 +17,7 @@ class Boletin extends Model
     public function categorias()
     {
         return $this->belongsToMany('App\Categoria')
-                    ->withPivot('descripcion');;
+                    ->withPivot('observacion');;
     }
 
 }

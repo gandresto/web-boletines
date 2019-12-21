@@ -16,7 +16,7 @@ class SumarioResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'sumario' => $this->texto
+            'sumario' => $this->contenido
         ];
     }
 }

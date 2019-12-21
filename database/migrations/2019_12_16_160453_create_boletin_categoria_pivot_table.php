@@ -17,7 +17,7 @@ class CreateBoletinCategoriaPivotTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('boletin_id');
             $table->unsignedBigInteger('categoria_id');
-            $table->string('descripcion');
+            $table->string('observacion')->nullable();
             // $table->timestamps();
             $table->index('boletin_id');
             $table->index('categoria_id');

@@ -10,6 +10,6 @@ class Categoria extends Model
     public function boletines()
     {
         return $this->belongsToMany('App\Boletin')
-                    ->withPivot('descripcion');
+                    ->withPivot('observacion');
     }
 }

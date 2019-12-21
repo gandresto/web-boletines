@@ -26,6 +26,8 @@ class CrearTablaBoletines extends Migration
             // $table->timestamps();
 
             $table->index('candidato');
+            $table->index('estado');
+            $table->index('fecha');
         });
     }
 
