@@ -1862,6 +1862,45 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CategoriasCheckboxComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CategoriasCheckboxComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['categorias', 'categoriasBoletin', 'boletinId', 'checkInicial'],
+  data: function data() {
+    return {
+      _categorias: this.categorias,
+      _categoriasBoletin: this.categoriasBoletin,
+      _checkInicial: this.checkInicial,
+      _boletinId: this.boletinId
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ModalBoletinComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ModalBoletinComponent.vue?vue&type=script&lang=js& ***!
@@ -1935,13 +1974,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
+ // import CategoriasCheckbox from './CategoriasCheckboxComponent.vue';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       ESTADO: _enum_estado_api__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
+  },
+  methods: {
+    datosCategoria: function datosCategoria(cat_id) {
+      if (this.categoriasBoletin && this.categoriasBoletin.length > 0) {
+        return [this.categoriasBoletin.find(function (catBoletin) {
+          return catBoletin.id == cat_id;
+        }), this.categoriasBoletin.map(function (cat) {
+          return cat.id;
+        })];
+      } else return null;
+    }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['boletinActual', 'estadoBoletinActual', 'categorias']), {
     titulo: function titulo() {
@@ -1971,6 +2025,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           dateStyle: "long"
         });
       } else return '';
+    },
+    categoriasBoletin: function categoriasBoletin() {
+      return this.boletinActual && this.boletinActual.categorias ? this.boletinActual.categorias : [];
+    },
+    computedCategorias: function computedCategorias() {
+      return this.categorias && this.categorias.persuasivas ? this.categorias : [];
+    },
+    checkInicial: function checkInicial() {
+      var _this = this;
+
+      if (this.computedCategorias && this.categoriasBoletin) {
+        var checkInicial = {
+          persuasivas: {},
+          periodisticas: {}
+        };
+
+        var _loop = function _loop() {
+          var tipo_cat = _arr[_i];
+          var categorias = _this.computedCategorias[tipo_cat];
+          var subCheck = {};
+          categorias.forEach(function (cat) {
+            return subCheck[cat.id] = _this.categoriasBoletin.filter(function (cat_boletin) {
+              return cat_boletin.id == cat.id;
+            }).length > 0;
+          });
+          checkInicial[tipo_cat] = subCheck;
+        };
+
+        for (var _i = 0, _arr = ['persuasivas', 'periodisticas']; _i < _arr.length; _i++) {
+          _loop();
+        }
+
+        return checkInicial;
+      } else return {};
     }
   })
 });
@@ -67614,6 +67702,84 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CategoriasCheckboxComponent.vue?vue&type=template&id=4a6522c2&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CategoriasCheckboxComponent.vue?vue&type=template&id=4a6522c2& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    _vm._l(_vm.$data._categorias, function(cat) {
+      return _c("div", { key: cat.id, staticClass: "form-check" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.$data._checkInicial[cat.id],
+              expression: "$data._checkInicial[cat.id]"
+            }
+          ],
+          staticClass: "form-check-input",
+          attrs: { type: "checkbox", id: cat.id },
+          domProps: {
+            value: cat.id,
+            checked: Array.isArray(_vm.$data._checkInicial[cat.id])
+              ? _vm._i(_vm.$data._checkInicial[cat.id], cat.id) > -1
+              : _vm.$data._checkInicial[cat.id]
+          },
+          on: {
+            change: function($event) {
+              var $$a = _vm.$data._checkInicial[cat.id],
+                $$el = $event.target,
+                $$c = $$el.checked ? true : false
+              if (Array.isArray($$a)) {
+                var $$v = cat.id,
+                  $$i = _vm._i($$a, $$v)
+                if ($$el.checked) {
+                  $$i < 0 &&
+                    _vm.$set(_vm.$data._checkInicial, cat.id, $$a.concat([$$v]))
+                } else {
+                  $$i > -1 &&
+                    _vm.$set(
+                      _vm.$data._checkInicial,
+                      cat.id,
+                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                    )
+                }
+              } else {
+                _vm.$set(_vm.$data._checkInicial, cat.id, $$c)
+              }
+            }
+          }
+        }),
+        _c(
+          "label",
+          { staticClass: "form-check-label", attrs: { for: cat.id } },
+          [_vm._v("\n            " + _vm._s(cat.nombre) + "\n        ")]
+        )
+      ])
+    }),
+    0
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ModalBoletinComponent.vue?vue&type=template&id=6d42ec48&":
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ModalBoletinComponent.vue?vue&type=template&id=6d42ec48& ***!
@@ -67656,7 +67822,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("Calcelar")]
+                [_vm._v("Cancelar")]
               ),
               _vm._v(" "),
               _c(
@@ -67679,64 +67845,81 @@ var render = function() {
       ])
     },
     [
-      _c("b-container", [
-        _c("div", { staticClass: "text-right" }, [
-          _c("p", [_vm._v(_vm._s(_vm.fecha))])
-        ]),
-        _vm._v(" "),
-        _c("h3", [_vm._v(_vm._s(_vm.encabezado))]),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c(
-          "ul",
-          _vm._l(_vm.sumarios, function(data) {
-            return _c("li", { key: data.id }, [
-              _vm._v(
-                "\n                " + _vm._s(data.sumario) + "\n            "
+      _c(
+        "b-container",
+        [
+          _c(
+            "b-row",
+            [
+              _c("b-col", { attrs: { cols: "12" } }, [
+                _c("div", { staticClass: "text-right" }, [
+                  _c("p", [_vm._v(_vm._s(_vm.fecha))])
+                ]),
+                _vm._v(" "),
+                _c("h3", [_vm._v(_vm._s(_vm.encabezado))]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  _vm._l(_vm.sumarios, function(data) {
+                    return _c("li", { key: data.id }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(data.sumario) +
+                          "\n                    "
+                      )
+                    ])
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.primerParrafo) +
+                      "\n                "
+                  )
+                ])
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("h4", [_vm._v("Categorias")]),
+          _vm._v(" "),
+          _vm._l(_vm.categorias, function(tipo_cat, index) {
+            return _c("div", { key: index, staticClass: "form-row" }, [
+              _c("div", { staticClass: "col-xl-12" }, [
+                _c("h5", [_vm._v(_vm._s(index))])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-xl-12" },
+                [
+                  _vm.boletinActual && _vm.checkInicial
+                    ? _c("categorias-checkbox-component", {
+                        attrs: {
+                          categorias: tipo_cat,
+                          categoriasBoletin: _vm.categoriasBoletin,
+                          checkInicial: _vm.checkInicial[index],
+                          boletinId: _vm.boletinActual.id
+                        }
+                      })
+                    : _vm._e()
+                ],
+                1
               )
             ])
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("\n            " + _vm._s(_vm.primerParrafo) + "\n        ")
-        ]),
-        _vm._v(" "),
-        _vm.categorias
-          ? _c(
-              "div",
-              { staticClass: "form-check" },
-              _vm._l(_vm.categorias, function(categoria) {
-                return _c(
-                  "label",
-                  { key: categoria.id, staticClass: "form-check-label" },
-                  [
-                    _c("input", {
-                      staticClass: "form-check-input",
-                      attrs: {
-                        type: "checkbox",
-                        name: "categoria.nombre",
-                        id: "",
-                        value: "categoria.id",
-                        checked: "false"
-                      }
-                    }),
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(categoria.nombre) +
-                        "\n            "
-                    )
-                  ]
-                )
-              }),
-              0
-            )
-          : _vm._e()
-      ])
+          })
+        ],
+        2
+      )
     ],
     1
   )
@@ -84298,6 +84481,7 @@ axios__WEBPACK_IMPORTED_MODULE_6___default.a.defaults.headers.common = {
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('paginador-component', __webpack_require__(/*! ./components/PaginadorComponent.vue */ "./resources/js/components/PaginadorComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('modal-boletin-component', __webpack_require__(/*! ./components/ModalBoletinComponent.vue */ "./resources/js/components/ModalBoletinComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('categorias-checkbox-component', __webpack_require__(/*! ./components/CategoriasCheckboxComponent.vue */ "./resources/js/components/CategoriasCheckboxComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -84356,6 +84540,76 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/CategoriasCheckboxComponent.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/CategoriasCheckboxComponent.vue ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CategoriasCheckboxComponent_vue_vue_type_template_id_4a6522c2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CategoriasCheckboxComponent.vue?vue&type=template&id=4a6522c2& */ "./resources/js/components/CategoriasCheckboxComponent.vue?vue&type=template&id=4a6522c2&");
+/* harmony import */ var _CategoriasCheckboxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoriasCheckboxComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/CategoriasCheckboxComponent.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _CategoriasCheckboxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _CategoriasCheckboxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CategoriasCheckboxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CategoriasCheckboxComponent_vue_vue_type_template_id_4a6522c2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CategoriasCheckboxComponent_vue_vue_type_template_id_4a6522c2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CategoriasCheckboxComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/CategoriasCheckboxComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/CategoriasCheckboxComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoriasCheckboxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CategoriasCheckboxComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CategoriasCheckboxComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoriasCheckboxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/CategoriasCheckboxComponent.vue?vue&type=template&id=4a6522c2&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/CategoriasCheckboxComponent.vue?vue&type=template&id=4a6522c2& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoriasCheckboxComponent_vue_vue_type_template_id_4a6522c2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CategoriasCheckboxComponent.vue?vue&type=template&id=4a6522c2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CategoriasCheckboxComponent.vue?vue&type=template&id=4a6522c2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoriasCheckboxComponent_vue_vue_type_template_id_4a6522c2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoriasCheckboxComponent_vue_vue_type_template_id_4a6522c2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

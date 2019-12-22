@@ -37,6 +37,7 @@ axios.defaults.headers.common = {
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('paginador-component', require('./components/PaginadorComponent.vue').default);
 Vue.component('modal-boletin-component', require('./components/ModalBoletinComponent.vue').default);
+Vue.component('categorias-checkbox-component', require('./components/CategoriasCheckboxComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
